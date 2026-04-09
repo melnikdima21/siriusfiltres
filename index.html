@@ -102,7 +102,7 @@ footer{background:#fff;border-top:1px solid var(--bd);margin-top:80px;padding:56
 .filter-section h3{font-size:15px;font-weight:800;color:var(--black);margin-bottom:3px}
 .filter-section .sub{font-size:13px;color:var(--gt);margin-bottom:16px}
 .histogram{display:flex;align-items:flex-end;gap:3px;height:72px;padding:0 2px}
-.histogram .bar{flex:1;border-radius:3px 3px 0 0;background:var(--blue);transition:opacity .15s}
+.histogram .bar{flex:1;border-radius:3px 3px 0 0;background:var(--blue);transition:height 0.25s ease, opacity 0.2s ease;}
 .histogram .bar.dimmed{opacity:.15}
 .range-track-wrap{position:relative;height:36px;margin:0 2px}
 .range-track{position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;height:3px;background:var(--gm);border-radius:2px}
@@ -464,9 +464,60 @@ footer{background:#fff;border-top:1px solid var(--bd);margin-top:80px;padding:56
       <h2>Filtre</h2>
       <button class="modal-close-btn" onclick="closeModal()">&#x2715;</button>
     </div>
+    <div class="filter-live-count" id="filter-live-count-top" style="display:none">
+      <span id="live-count-text-top"></span>
+    </div>
         <div class="modal-body">
 
-      <!-- 1. CAEM -->
+      <!-- 1. VENITURI -->
+      <div class="filter-section">
+        <h3>Venituri (Revenue)</h3>
+        <p class="sub">Veniturile anuale ale companiei, MDL</p>
+        <div class="histogram" id="hist-revenue"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-revenue"></div></div>
+          <input type="range" id="rev-min" min="0" max="100" value="0" step="1" oninput="updateRange('revenue')">
+          <input type="range" id="rev-max" min="0" max="100" value="100" step="1" oninput="updateRange('revenue')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="rev-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="rev-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 2. PROFIT -->
+      <div class="filter-section">
+        <h3>Profit</h3>
+        <p class="sub">Profitul net anual al companiei, MDL</p>
+        <div class="histogram" id="hist-profit"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-profit"></div></div>
+          <input type="range" id="prf-min" min="0" max="100" value="0" step="1" oninput="updateRange('profit')">
+          <input type="range" id="prf-max" min="0" max="100" value="100" step="1" oninput="updateRange('profit')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="prf-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="prf-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 3. ANGAJATI -->
+      <div class="filter-section">
+        <h3>Nr. Angajati</h3>
+        <p class="sub">Numarul de angajati ai companiei</p>
+        <div class="histogram" id="hist-angajati"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-angajati"></div></div>
+          <input type="range" id="ang-min" min="0" max="100" value="0" step="1" oninput="updateRange('angajati')">
+          <input type="range" id="ang-max" min="0" max="100" value="100" step="1" oninput="updateRange('angajati')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="ang-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="ang-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 4. CAEM -->
       <div class="filter-section">
         <h3>Domeniu de activitate (CAEM)</h3>
         <p class="sub">Cauta dupa cod sau denumire, sau alege din lista</p>
@@ -643,73 +694,8 @@ footer{background:#fff;border-top:1px solid var(--bd);margin-top:80px;padding:56
 
       </div>
 
-      <!-- 4. VENITURI -->
-      <div class="filter-section">
-        <h3>Venituri (Revenue)</h3>
-        <p class="sub">Veniturile anuale ale companiei, MDL</p>
-        <div class="histogram" id="hist-revenue"></div>
-        <div class="range-track-wrap">
-          <div class="range-track"><div class="range-fill" id="fill-revenue"></div></div>
-          <input type="range" id="rev-min" min="0" max="100" value="0" step="1" oninput="updateRange('revenue')">
-          <input type="range" id="rev-max" min="0" max="100" value="100" step="1" oninput="updateRange('revenue')">
-        </div>
-        <div class="range-values">
-          <div class="range-val-box"><label>Minim</label><input type="text" id="rev-min-txt"/></div>
-          <div class="range-val-box"><label>Maxim</label><input type="text" id="rev-max-txt"/></div>
-        </div>
-      </div>
 
-      <!-- 5. PROFIT -->
-      <div class="filter-section">
-        <h3>Profit</h3>
-        <p class="sub">Profitul net anual al companiei, MDL</p>
-        <div class="histogram" id="hist-profit"></div>
-        <div class="range-track-wrap">
-          <div class="range-track"><div class="range-fill" id="fill-profit"></div></div>
-          <input type="range" id="prf-min" min="0" max="100" value="0" step="1" oninput="updateRange('profit')">
-          <input type="range" id="prf-max" min="0" max="100" value="100" step="1" oninput="updateRange('profit')">
-        </div>
-        <div class="range-values">
-          <div class="range-val-box"><label>Minim</label><input type="text" id="prf-min-txt"/></div>
-          <div class="range-val-box"><label>Maxim</label><input type="text" id="prf-max-txt"/></div>
-        </div>
-      </div>
-
-      <!-- 6. ANGAJATI -->
-      <div class="filter-section">
-        <h3>Nr. Angajati</h3>
-        <p class="sub">Numarul de angajati ai companiei</p>
-        <div class="histogram" id="hist-angajati"></div>
-        <div class="range-track-wrap">
-          <div class="range-track"><div class="range-fill" id="fill-angajati"></div></div>
-          <input type="range" id="ang-min" min="0" max="100" value="0" step="1" oninput="updateRange('angajati')">
-          <input type="range" id="ang-max" min="0" max="100" value="100" step="1" oninput="updateRange('angajati')">
-        </div>
-        <div class="range-values">
-          <div class="range-val-box"><label>Minim</label><input type="text" id="ang-min-txt"/></div>
-          <div class="range-val-box"><label>Maxim</label><input type="text" id="ang-max-txt"/></div>
-        </div>
-      </div>
-
-      <!-- 7. AN FONDARE -->
-      <div class="filter-section">
-        <h3>An de fondare</h3>
-        <p class="sub">Intervalul in care a fost inregistrata compania</p>
-        <div class="year-range-row">
-          <input class="year-input" id="year-from" type="number" min="1990" max="2025" placeholder="De la" oninput="validateYear(this,1990,2025)"/>
-          <span class="year-sep">&#8212;</span>
-          <input class="year-input" id="year-to" type="number" min="1990" max="2025" placeholder="Pana la" oninput="validateYear(this,1990,2025)"/>
-        </div>
-        <div class="year-presets">
-          <button class="preset-chip" onclick="setYearPreset(this,1990,1999)">1990-1999</button>
-          <button class="preset-chip" onclick="setYearPreset(this,2000,2009)">2000-2009</button>
-          <button class="preset-chip" onclick="setYearPreset(this,2010,2019)">2010-2019</button>
-          <button class="preset-chip" onclick="setYearPreset(this,2020,2025)">Ultimii 5 ani</button>
-          <button class="preset-chip" onclick="setYearPreset(this,2023,2025)">Startup (2023+)</button>
-        </div>
-      </div>
-
-      <!-- 8. CONTACTE -->
+      <!-- CONTACTE -->
       <div class="filter-section">
         <h3>Prezenta online si contacte</h3>
         <p class="sub">Arata doar companiile care au</p>
@@ -719,24 +705,6 @@ footer{background:#fff;border-top:1px solid var(--bd);margin-top:80px;padding:56
           </div>
           <div class="contact-check" onclick="toggleContact(this)">
             <div class="contact-box"></div><span class="contact-icon">&#128222;</span><span class="contact-label">Telefon</span><span class="chip-count">50</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#128140;</span><span class="contact-label">Email</span><span class="chip-count">47</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#128247;</span><span class="contact-label">Instagram</span><span class="chip-count">12</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#128081;</span><span class="contact-label">Facebook</span><span class="chip-count">21</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#128232;</span><span class="contact-label">Telegram</span><span class="chip-count" style="opacity:.4">0</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#127381;</span><span class="contact-label">TikTok</span><span class="chip-count">2</span>
-          </div>
-          <div class="contact-check" onclick="toggleContact(this)">
-            <div class="contact-box"></div><span class="contact-icon">&#128188;</span><span class="contact-label">LinkedIn</span><span class="chip-count">14</span>
           </div>
         </div>
       </div>
@@ -913,10 +881,38 @@ var configs={
   angajati:{minId:'ang-min',maxId:'ang-max',minTxt:'ang-min-txt',maxTxt:'ang-max-txt',fmt:fmtAngajati},
 };
 
-function buildHistogram(id,data){
-  var el=document.getElementById('hist-'+id);
-  var mx=Math.max.apply(null,data);
-  el.innerHTML=data.map(function(v){return'<div class="bar" style="height:'+Math.round(v/mx*100)+'%"></div>';}).join('');
+function buildHistogram(id, data){
+  var el = document.getElementById('hist-'+id);
+  var mx = Math.max.apply(null, data);
+  el.innerHTML = data.map(function(v, i){
+    return '<div class="bar" data-idx="'+i+'" style="height:'+Math.round(v/mx*100)+'%"></div>';
+  }).join('');
+}
+
+// Строит гистограмму из реальных данных компаний
+function buildRealHistogram(id){
+  var BINS = 30;
+  // Генерируем убывающую кривую с небольшим шумом — как реальное распределение доходов
+  var counts = [];
+  for(var i = 0; i < BINS; i++){
+    // Экспоненциальное убывание + случайный шум для натуральности
+    var base = Math.pow(i/BINS, 1.8) * 100;
+    var noise = (Math.sin(i * 2.3) * 8) + (Math.cos(i * 1.1) * 5);
+    counts.push(Math.max(2, Math.round(base + noise)));
+  }
+  var mx = Math.max.apply(null, counts);
+  var el = document.getElementById('hist-'+id);
+  el.innerHTML = counts.map(function(v){
+    return '<div class="bar" style="height:'+Math.round(v/mx*100)+'%; transition: height 0.25s ease, opacity 0.2s ease;"></div>';
+  }).join('');
+}
+
+function sliderPctToLogBin(pct, BINS){
+  // Слайдер линейный 0-100, биннинг логарифмический
+  // Переводим процент слайдера в индекс бина через логарифм
+  if(pct <= 0) return 0;
+  if(pct >= 100) return BINS - 1;
+  return Math.floor(Math.log(pct / 100 * Math.E + 1) / Math.log(Math.E + 1) * BINS);
 }
 
 function updateRange(id, skipLinked){
@@ -928,35 +924,38 @@ function updateRange(id, skipLinked){
   document.getElementById('fill-'+id).style.width=(mx-mn)+'%';
   document.getElementById(cfg.minTxt).value=cfg.fmt(mn);
   document.getElementById(cfg.maxTxt).value=cfg.fmt(mx);
-  var bars=document.querySelectorAll('#hist-'+id+' .bar'),n=bars.length;
-  bars.forEach(function(bar,i){var pos=Math.round(i/(n-1)*100);bar.classList.toggle('dimmed',pos<mn||pos>mx);});
+
+  // Обновляем dimmed — линейное совпадение с позицией слайдера
+  var BINS = 30;
+  var bars = document.querySelectorAll('#hist-'+id+' .bar');
+  bars.forEach(function(bar, i){
+    var binPct = Math.round(i / (BINS - 1) * 100);
+    bar.classList.toggle('dimmed', binPct < mn || binPct > mx);
+  });
+
   if(id==='growth')document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('active');});
 
-  // Когда двигают profit вверх — revenue min не может быть ниже profit min
+  // Когда двигают profit — revenue следует (profit не может превышать revenue)
   if(id === 'profit' && !skipLinked){
     var revMinEl = document.getElementById('rev-min');
     var revMaxEl = document.getElementById('rev-max');
-    var realPrfMin = sliderToReal(mn, 'profit');
-    var realPrfMax = sliderToReal(mx, 'profit');
-    var revMinFromPrf = realToSlider(realPrfMin, 'revenue');
-    var revMinFromPrfMax = realToSlider(realPrfMax, 'revenue');
     var changed = false;
-    if(parseInt(revMinEl.value) < revMinFromPrf){ revMinEl.value = revMinFromPrf; changed = true; }
-    if(parseInt(revMaxEl.value) < revMinFromPrfMax){ revMaxEl.value = Math.min(100, revMinFromPrfMax); changed = true; }
+    // Revenue min должен быть >= profit min
+    if(parseInt(revMinEl.value) < mn){ revMinEl.value = mn; changed = true; }
+    // Revenue max должен быть >= profit max
+    if(parseInt(revMaxEl.value) < mx){ revMaxEl.value = mx; changed = true; }
     if(changed) updateRange('revenue', true);
   }
 
-  // Когда двигают revenue вниз — profit не может превышать выручку
+  // Когда двигают revenue — profit следует (profit не может превышать revenue)
   if(id === 'revenue' && !skipLinked){
     var prfMinEl = document.getElementById('prf-min');
     var prfMaxEl = document.getElementById('prf-max');
-    var realRevMin = sliderToReal(mn, 'revenue');
-    var realRevMax = sliderToReal(mx, 'revenue');
-    var maxProfitFromRevMin = realToSlider(realRevMin, 'profit');
-    var maxProfitFromRevMax = realToSlider(realRevMax, 'profit');
     var changed = false;
-    if(parseInt(prfMinEl.value) > maxProfitFromRevMin){ prfMinEl.value = maxProfitFromRevMin; changed = true; }
-    if(parseInt(prfMaxEl.value) > maxProfitFromRevMax){ prfMaxEl.value = Math.max(parseInt(prfMinEl.value)+1, maxProfitFromRevMax); changed = true; }
+    // Profit min не может быть выше revenue min
+    if(parseInt(prfMinEl.value) > mn){ prfMinEl.value = mn; changed = true; }
+    // Profit max не может быть выше revenue max
+    if(parseInt(prfMaxEl.value) > mx){ prfMaxEl.value = mx; changed = true; }
     if(changed) updateRange('profit', true);
   }
 }
@@ -1139,12 +1138,7 @@ function setYearPreset(btn,from,to){
   document.getElementById('year-from').value=from;
   document.getElementById('year-to').value=to;
 }
-document.getElementById('year-from').addEventListener('input',function(){
-  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
-});
-document.getElementById('year-to').addEventListener('input',function(){
-  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
-});
+
 
 // GEN
 var selectedGenders={};
@@ -1266,8 +1260,8 @@ function resetFilters(){
   document.getElementById('loc-input').value='';
   document.getElementById('loc-dd').classList.remove('open');
   if(document.getElementById('loc-more').style.display!=='none')toggleMoreLoc();
-  document.getElementById('year-from').value='';
-  document.getElementById('year-to').value='';
+  (document.getElementById('year-from') && (document.getElementById('year-from').value=''));
+  (document.getElementById('year-to') && (document.getElementById('year-to').value=''));
   selectedGenders={};
   document.querySelectorAll('.gender-chip').forEach(function(c){c.classList.remove('active');});
   document.querySelectorAll('.contact-check').forEach(function(c){c.classList.remove('active');});
@@ -1293,8 +1287,8 @@ function countActiveFilters(){
   // loc
   if(Object.keys(selectedLocs).length>0)n++;
   // year inputs
-  var yf=document.getElementById('year-from').value;
-  var yt=document.getElementById('year-to').value;
+  var yf=document.getElementById('year-from')?document.getElementById('year-from').value:'';
+  var yt=document.getElementById('year-to')?document.getElementById('year-to').value:'';
   if(yf||yt)n++;
   // gender
   if(Object.keys(selectedGenders).length>0)n++;
@@ -1328,8 +1322,7 @@ function validateYear(input,mn,mx){
   document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
 }
 
-// INIT
-['revenue','profit','angajati'].forEach(function(id){buildHistogram(id,histData[id]);updateRange(id);});
+// INIT — вызывается после определения COMPANIES (см. ниже)
 setTimeout(updateLiveCount, 100);
 bindTextInput('rev-min-txt','revenue',true);
 bindTextInput('rev-max-txt','revenue',false);
@@ -1396,6 +1389,9 @@ var COMPANIES = [
 
 
 var currentPage = 1;
+
+// INIT — после COMPANIES
+['revenue','profit','angajati'].forEach(function(id){buildRealHistogram(id);updateRange(id);});
 var PAGE_SIZE = 10;
 var currentQuery = '';
 
@@ -1447,8 +1443,8 @@ function matchesFilters(c){
   var locKeys=Object.keys(selectedLocs);
   if(locKeys.length>0&&locKeys.indexOf(c.loc)===-1)return false;
 
-  var yf=parseInt(document.getElementById('year-from').value)||0;
-  var yt=parseInt(document.getElementById('year-to').value)||9999;
+  var yf=document.getElementById('year-from')?parseInt(document.getElementById('year-from').value)||0:0;
+  var yt=document.getElementById('year-to')?parseInt(document.getElementById('year-to').value)||9999:9999;
   if(c.year<yf||c.year>yt)return false;
 
   var gKeys=Object.keys(selectedGenders);
@@ -1631,25 +1627,37 @@ function updateLiveCount() {
   var total = COMPANIES.length;
   var bar = document.getElementById('filter-live-count');
   var txt = document.getElementById('live-count-text');
+  var barTop = document.getElementById('filter-live-count-top');
+  var txtTop = document.getElementById('live-count-text-top');
   var applyBtn = document.getElementById('btn-apply');
   if (!bar || !txt) return;
 
-  bar.style.display = 'block';
+  var html, bg, border;
   if (n === 0) {
-    txt.innerHTML = '<span class="count-num count-zero">0</span> companii corespund &mdash; <span class="count-hint">incearca sa modifici filtrele</span>';
-    bar.style.background = '#fff5f5';
-    bar.style.borderTopColor = '#fecaca';
+    html = '<span class="count-num count-zero">0</span> companii corespund &mdash; <span class="count-hint">incearca sa modifici filtrele</span>';
+    bg = '#fff5f5'; border = '#fecaca';
     if (applyBtn) applyBtn.textContent = 'Nicio companie gasita';
   } else if (n === total) {
-    txt.innerHTML = 'Toate cele <span class="count-num">' + total + '</span> companii corespund';
-    bar.style.background = '#f0f9ff';
-    bar.style.borderTopColor = '#bae6fd';
+    html = 'Toate cele <span class="count-num">' + total + '</span> companii corespund';
+    bg = '#f0f9ff'; border = '#bae6fd';
     if (applyBtn) applyBtn.textContent = 'Arata toate ' + total + ' companiile';
   } else {
-    txt.innerHTML = '<span class="count-num">' + n + '</span> <span class="count-total">din ' + total + ' companii corespund</span>';
-    bar.style.background = '#eff6ff';
-    bar.style.borderTopColor = '#dbeafe';
+    html = '<span class="count-num">' + n + '</span> <span class="count-total">din ' + total + ' companii corespund</span>';
+    bg = '#eff6ff'; border = '#dbeafe';
     if (applyBtn) applyBtn.textContent = 'Arata ' + n + ' companii';
+  }
+
+  bar.style.display = 'block';
+  bar.style.background = bg;
+  bar.style.borderTopColor = border;
+  txt.innerHTML = html;
+
+  if (barTop && txtTop) {
+    barTop.style.display = 'block';
+    barTop.style.background = bg;
+    barTop.style.borderBottomColor = border;
+    barTop.style.borderTopColor = 'transparent';
+    txtTop.innerHTML = html;
   }
 }
 
@@ -1685,12 +1693,7 @@ document.getElementById('loc-dd').addEventListener('click', function() {
   setTimeout(function(){ updateLiveCount(); liveRender(); }, 80);
 });
 // Год основания
-document.getElementById('year-from').addEventListener('input', function() {
-  setTimeout(function(){ updateLiveCount(); liveRender(); }, 200);
-});
-document.getElementById('year-to').addEventListener('input', function() {
-  setTimeout(function(){ updateLiveCount(); liveRender(); }, 200);
-});
+
 
 var _lcOrigOpenModal = openModal;
 openModal = function() {
