@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sirius B2B</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--black:#0f0f0f;--gl:#f5f5f5;--gm:#e8e8e8;--gt:#6b6b6b;--bd:#e4e4e4;--blue:#2563eb}
+html{font-family:var(--font);color:var(--black);background:#fff}
+a{text-decoration:none;color:inherit}
+.announce-bar{background:#111;color:#fff;font-size:13.5px;text-align:center;padding:9px 48px;position:relative;line-height:1.5}
+.announce-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.announce-bar .x{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;opacity:.7}
+.announce-bar .x:hover{opacity:1}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:#fff;z-index:50}
+.nav-logo{display:flex;align-items:flex-start;gap:2px;font-weight:800;font-size:20px;color:var(--black)}
+.nav-logo svg{margin-top:1px}
+.nav-logo-sub{font-size:10px;font-weight:700;color:var(--blue);line-height:1;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:#444;transition:color .15s}
+.nav-links a:hover{color:var(--black)}
+.badge{display:inline-block;background:var(--black);color:#fff;font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:20px;margin-left:3px;vertical-align:middle}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang-sel{font-size:13px;color:#555;cursor:pointer;background:none;border:none;font-family:var(--font)}
+.btn-ghost{font-size:13.5px;color:var(--black);cursor:pointer;background:none;border:none;font-family:var(--font);transition:opacity .15s}
+.btn-ghost:hover{opacity:.7}
+.btn-black{background:var(--black);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13.5px;font-family:var(--font);font-weight:600;cursor:pointer;transition:background .15s}
+.btn-black:hover{background:#333}
+.hero{text-align:center;padding:90px 24px 72px;position:relative;overflow:hidden}
+.hero-gradient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 55% at 50% 30%,#dbeafe 0%,rgba(219,234,254,.3) 55%,transparent 75%)}
+.hero-dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,#c8d8ea 1px,transparent 1px);background-size:28px 28px;opacity:.35;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%)}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:clamp(38px,6vw,60px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--black)}
+.hero h1 .dim{color:#bbb}
+.hero p{font-size:16px;color:var(--gt);margin-top:14px;line-height:1.6}
+.search-wrap{display:flex;align-items:stretch;max-width:660px;margin:36px auto 0;border-radius:12px;border:1.5px solid var(--bd);background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden}
+.search-wrap input{flex:1;border:none;outline:none;padding:15px 20px;font-size:15px;color:var(--black);font-family:var(--font);background:transparent;min-width:0}
+.search-wrap input::placeholder{color:#b0b0b0}
+.btn-cauta{background:var(--black);color:#fff;border:none;padding:15px 26px;font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;white-space:nowrap;transition:background .15s}
+.btn-cauta:hover{background:#333}
+.btn-filtre{background:var(--black);color:#fff;border:none;border-left:1px solid #333;padding:15px 20px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px;transition:background .15s}
+.btn-filtre:hover{background:#2a2a2a}
+.btn-filtre svg{width:15px;height:15px;flex-shrink:0}
+.stats{display:flex;justify-content:center;gap:64px;margin:56px auto 0;padding:0 24px;position:relative;z-index:1}
+.stat{text-align:center}
+.stat-num{font-size:28px;font-weight:800;color:var(--black);letter-spacing:-.5px}
+.stat-label{font-size:13px;color:var(--gt);margin-top:3px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1060px;margin:80px auto 0;padding:0 40px}
+.feat-card{background:#fafafa;border-radius:14px;border:1px solid var(--bd);padding:28px}
+.feat-card h3{font-size:15px;font-weight:700;color:var(--black);margin-bottom:10px}
+.feat-card p{font-size:14px;color:var(--gt);line-height:1.65}
+.promo{background:#f9fafb;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:72px 40px;text-align:center;margin-top:80px}
+.promo h2{font-size:30px;font-weight:800;color:var(--black);margin-bottom:8px}
+.promo .subtitle{font-size:15px;color:var(--gt);margin-bottom:6px}
+.promo p{font-size:15px;color:var(--gt);max-width:500px;margin:0 auto 28px;line-height:1.65}
+.btn-outline{display:inline-block;border:1.5px solid var(--black);color:var(--black);border-radius:8px;padding:11px 24px;font-size:14px;font-weight:600;transition:background .15s,color .15s;cursor:pointer}
+.btn-outline:hover{background:var(--black);color:#fff}
+.faq{max-width:720px;margin:80px auto 0;padding:0 40px}
+.faq h2{font-size:28px;font-weight:800;color:var(--black);margin-bottom:32px}
+.faq-item{border-top:1px solid var(--bd);padding:20px 0;cursor:pointer}
+.faq-item:last-child{border-bottom:1px solid var(--bd)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;color:var(--black);user-select:none;gap:16px}
+.faq-q .arrow{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:1.5px solid #ccc;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.faq-item.open .arrow{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--gt);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding-top .3s}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px}
+footer{background:#fff;border-top:1px solid var(--bd);margin-top:80px;padding:56px 40px 32px}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;max-width:1060px;margin:0 auto}
+.footer-contact{margin-top:20px}
+.footer-contact p{font-size:12px;color:#aaa;text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.footer-contact a{font-size:14px;color:var(--black);display:block;margin-bottom:14px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#aaa;margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#555;margin-bottom:10px;transition:color .15s}
+.footer-col a:hover{color:var(--black)}
+.newsletter{margin-top:20px}
+.newsletter p{font-size:13px;color:var(--gt);margin-bottom:12px}
+.newsletter-row{display:flex;gap:8px}
+.newsletter-row input{flex:1;border:1.5px solid var(--bd);border-radius:8px;padding:9px 14px;font-size:13px;outline:none;font-family:var(--font)}
+.newsletter-row button{background:var(--black);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.footer-bottom{max-width:1060px;margin:40px auto 0;border-top:1px solid var(--bd);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:13px;color:#aaa}
+.footer-bottom .legal{display:flex;gap:20px}
+.footer-bottom .legal a{font-size:13px;color:#aaa}
+.footer-bottom .legal a:hover{color:var(--black)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:200;align-items:center;justify-content:center;padding:24px}
+.overlay.active{display:flex}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:600px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.2);overflow:hidden;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:22px 26px 18px;border-bottom:1px solid var(--bd);flex-shrink:0}
+.modal-head h2{font-size:17px;font-weight:800;color:var(--black)}
+.modal-close-btn{background:none;border:none;font-size:24px;color:#bbb;cursor:pointer;line-height:1;transition:color .15s;padding:0 2px}
+.modal-close-btn:hover{color:var(--black)}
+.modal-body{padding:0;overflow-y:auto;flex:1;min-height:0}
+.modal-foot{display:flex;gap:10px;padding:18px 26px;border-top:1px solid var(--bd);flex-shrink:0}
+.btn-reset{flex:1;background:var(--gl);border:none;border-radius:8px;padding:12px;font-size:14px;font-family:var(--font);cursor:pointer;color:#555;font-weight:500;transition:background .15s}
+.btn-reset:hover{background:var(--gm)}
+.btn-apply{flex:2;background:var(--black);border:none;border-radius:8px;padding:12px;font-size:14px;font-family:var(--font);cursor:pointer;color:#fff;font-weight:700;transition:background .15s}
+.btn-apply:hover{background:#333}
+.filter-section{padding:24px 26px 20px;border-bottom:1px solid var(--bd)}
+.filter-section:last-child{border-bottom:none}
+.filter-section h3{font-size:15px;font-weight:800;color:var(--black);margin-bottom:3px}
+.filter-section .sub{font-size:13px;color:var(--gt);margin-bottom:16px}
+.histogram{display:flex;align-items:flex-end;gap:3px;height:72px;padding:0 2px}
+.histogram .bar{flex:1;border-radius:3px 3px 0 0;background:var(--blue);transition:opacity .15s}
+.histogram .bar.dimmed{opacity:.15}
+.range-track-wrap{position:relative;height:36px;margin:0 2px}
+.range-track{position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;height:3px;background:var(--gm);border-radius:2px}
+.range-fill{position:absolute;height:3px;top:0;background:var(--blue);border-radius:2px}
+.range-track-wrap input[type=range]{position:absolute;top:50%;transform:translateY(-50%);width:100%;margin:0;padding:0;-webkit-appearance:none;appearance:none;background:transparent;pointer-events:none;z-index:3}
+.range-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:1.5px solid #ccc;box-shadow:0 1px 6px rgba(0,0,0,.18);cursor:pointer;pointer-events:all;transition:border-color .15s}
+.range-track-wrap input[type=range]::-webkit-slider-thumb:hover{border-color:#999}
+.range-track-wrap input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:1.5px solid #ccc;cursor:pointer;pointer-events:all}
+.range-values{display:flex;justify-content:space-between;margin-top:6px;gap:12px}
+.range-val-box{flex:1}
+.range-val-box label{display:block;font-size:12px;color:#aaa;margin-bottom:5px;font-weight:500}
+.range-val-box input[type=text]{width:100%;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;font-size:14px;font-family:var(--font);color:var(--black);outline:none;transition:border-color .15s;text-align:center}
+.range-val-box input[type=text]:focus{border-color:var(--blue)}
+.year-chip,.preset-chip{border:1.5px solid var(--bd);border-radius:20px;padding:6px 16px;font-size:13px;font-family:var(--font);cursor:pointer;background:#fff;color:#555;transition:all .15s;font-weight:500}
+.year-chip:hover,.preset-chip:hover{border-color:#999;color:var(--black)}
+.year-chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.preset-chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sector-chip{display:flex;align-items:center;gap:6px;border:1.5px solid var(--bd);border-radius:10px;padding:9px 12px;font-size:13px;font-family:var(--font);cursor:pointer;background:#fff;color:#444;transition:all .15s;font-weight:500;width:100%;justify-content:space-between}
+.sector-chip:hover{border-color:#999;color:var(--black)}
+.sector-chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.chip-code{font-size:11px;font-weight:700;opacity:.55;font-family:monospace}
+.sector-chip.active .chip-code{opacity:.7}
+.caem-search-wrap{position:relative;margin-bottom:4px}
+.caem-search-wrap .si{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none}
+.caem-input{width:100%;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px 10px 40px;font-size:14px;font-family:var(--font);color:var(--black);outline:none;transition:border-color .15s}
+.caem-input:focus{border-color:var(--blue)}
+.caem-input::placeholder{color:#b0b0b0}
+.caem-dropdown{display:none;background:#fff;border:1.5px solid var(--bd);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.10);max-height:200px;overflow-y:auto;margin-top:4px}
+.caem-dropdown.open{display:block}
+
+.caem-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .1s}
+.caem-item:hover{background:var(--gl)}
+.caem-item-code{font-size:12px;font-weight:700;color:var(--blue);font-family:monospace;flex-shrink:0;min-width:32px}
+.caem-item-name{font-size:13.5px;color:var(--black);line-height:1.3}
+.caem-item-name em{font-style:normal;background:#fef08a;border-radius:2px;padding:0 1px}
+.caem-check{margin-left:auto;color:var(--blue);font-size:13px;flex-shrink:0}
+.caem-empty{padding:14px;font-size:13px;color:#aaa;text-align:center}
+.selected-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0}
+.selected-chips.has-items{margin-bottom:14px}
+.sel-chip{display:flex;align-items:center;gap:5px;border:1.5px solid var(--black);border-radius:20px;padding:6px 10px 6px 14px;font-size:13px;font-family:var(--font);background:var(--black);color:#fff;font-weight:500;white-space:nowrap}
+.sel-chip-code{font-size:11px;font-weight:700;opacity:.6;font-family:monospace}
+.sel-chip-x{cursor:pointer;opacity:.7;font-size:15px;line-height:1;transition:opacity .1s}
+.sel-chip-x:hover{opacity:1}
+.quick-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#aaa;margin-bottom:10px}
+.show-more-btn{display:flex;align-items:center;gap:6px;margin-top:14px;background:none;border:none;font-family:var(--font);font-size:13.5px;font-weight:700;color:var(--black);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;transition:opacity .15s}
+.show-more-btn:hover{opacity:.65}
+.show-more-btn svg{transition:transform .25s}
+.show-more-btn.open svg{transform:rotate(180deg)}
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .features{grid-template-columns:1fr;padding:0 20px}
+  .stats{gap:32px;flex-wrap:wrap}
+  .footer-top{grid-template-columns:1fr}
+  .faq{padding:0 20px}.promo{padding:48px 20px}
+  footer{padding:48px 20px 28px}
+  .hero h1{font-size:36px}
+  .search-wrap{flex-wrap:wrap;border-radius:10px}
+  .btn-cauta,.btn-filtre{flex:1;justify-content:center}
+}
+
+.gender-grid{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.gender-chip{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 16px;font-size:14px;font-family:var(--font);cursor:pointer;background:#fff;color:#444;transition:all .15s;font-weight:500;width:100%}
+.gender-chip:hover{border-color:#999;color:var(--black)}
+.gender-chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.gender-chip .gi{font-size:18px;line-height:1}
+.year-range-row{display:flex;align-items:center;gap:12px;margin-top:4px}
+.year-input{width:90px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:15px;font-family:var(--font);color:var(--black);outline:none;text-align:center;transition:border-color .15s}
+.year-input:focus{border-color:var(--blue)}
+.year-sep{font-size:14px;color:#aaa;font-weight:500}
+.year-presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.contact-check{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--bd);border-radius:10px;cursor:pointer;transition:all .15s;user-select:none}
+.contact-check:hover{border-color:#999}
+.contact-check.active{border-color:var(--blue);background:#eff6ff}
+.contact-check input[type=checkbox]{display:none}
+.contact-box{width:16px;height:16px;border-radius:4px;border:1.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.contact-check.active .contact-box{background:var(--blue);border-color:var(--blue)}
+.contact-check.active .contact-box::after{content:'';display:block;width:9px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px}
+.contact-icon{font-size:16px;line-height:1}
+.contact-label{font-size:13.5px;font-weight:500;color:var(--black);flex:1}
+
+.gender-grid{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.gender-chip{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 16px;font-size:14px;font-family:var(--font);cursor:pointer;background:#fff;color:#444;transition:all .15s;font-weight:500;width:100%}
+.gender-chip:hover{border-color:#999;color:var(--black)}
+.gender-chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.gender-chip .gi{font-size:18px;line-height:1}
+.year-range-row{display:flex;align-items:center;gap:12px;margin-top:4px}
+.year-input{width:90px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:15px;font-family:var(--font);color:var(--black);outline:none;text-align:center;transition:border-color .15s}
+.year-input:focus{border-color:var(--blue)}
+.year-sep{font-size:14px;color:#aaa;font-weight:500}
+.year-presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.contact-check{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--bd);border-radius:10px;cursor:pointer;transition:all .15s;user-select:none}
+.contact-check:hover{border-color:#999}
+.contact-check.active{border-color:var(--blue);background:#eff6ff}
+.contact-box{width:16px;height:16px;border-radius:4px;border:1.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.contact-check.active .contact-box{background:var(--blue);border-color:var(--blue)}
+.contact-check.active .contact-box::after{content:'';display:block;width:9px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px}
+.contact-icon{font-size:16px;line-height:1}
+.contact-label{font-size:13.5px;font-weight:500;color:var(--black);flex:1}
+}
+
+#results-section{width:100%;margin:0 auto 80px;padding:0;display:none}
+#results-section.visible{display:block}
+.results-inner{max-width:640px;margin:0 auto;padding:0 24px}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.results-count-text{font-size:14px;color:#6b6b6b}
+.results-count-text strong{color:#0f0f0f;font-weight:700}
+.sort-select{border:1.5px solid #e4e4e4;border-radius:8px;padding:6px 12px;font-size:13px;font-family:var(--font);outline:none;cursor:pointer;background:#fff;color:#0f0f0f}
+.results-grid{display:flex;flex-direction:column;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;background:#e8e8e8;gap:1px}
+.company-card{display:block;background:#fff;padding:18px 20px;text-decoration:none;color:inherit;transition:background .12s}
+.company-card:hover{background:#f9fafb}
+.cc-row1{display:flex;flex-direction:row;align-items:center;gap:12px;margin-bottom:10px}
+.cc-avatar{width:36px;height:36px;min-width:36px;max-width:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.3px}
+.cc-title{flex:1;min-width:0;overflow:hidden}
+.cc-name{font-size:14.5px;font-weight:600;color:#1a56db;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.cc-itpark{display:inline-flex;align-items:center;gap:3px;background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.cc-row2{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px;font-size:13px;color:#6b6b6b}
+.cc-meta{margin-right:16px;white-space:nowrap}
+.cc-meta strong{color:#111;font-weight:600}
+.cc-activity{display:inline-block;background:#f3f4f6;color:#4b5563;font-size:12px;padding:3px 9px;border-radius:6px;margin-bottom:10px}
+.cc-row3{display:flex;align-items:center;justify-content:space-between}
+.cc-icons{display:flex;gap:10px;color:#9ca3af;font-size:16px}
+.cc-link{font-size:13px;color:#1d4ed8;font-weight:500}
+.results-empty{text-align:center;padding:48px 0;color:#aaa;border:1px solid #e8e8e8;border-radius:12px;background:#fff}
+.results-empty-icon{font-size:40px;margin-bottom:10px}
+.results-empty-title{font-size:15px;font-weight:600;color:#555;margin-bottom:4px}
+.pagination{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.page-btn{min-width:34px;height:34px;border-radius:8px;border:1.5px solid #e4e4e4;background:#fff;font-size:13px;cursor:pointer;font-family:var(--font);transition:all .15s;padding:0 8px}
+.page-btn:hover:not([disabled]){border-color:#999}
+.page-btn.active{background:#111;color:#fff;border-color:#111}
+.page-btn[disabled]{opacity:.3;cursor:default}
+.search-highlight{background:#dbeafe;border-radius:2px;padding:0 1px;color:#1d4ed8;font-weight:600}
+
+.growth-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.growth-btn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:1.5px solid var(--bd);border-radius:12px;padding:12px 14px;font-family:var(--font);cursor:pointer;background:#fff;text-align:left;transition:all .15s}
+.growth-btn:hover{border-color:#999;background:#fafafa}
+.growth-btn.active{border-color:var(--blue);background:#eff6ff}
+.growth-btn--down:hover{border-color:#ef4444;background:#fff5f5}
+.growth-btn--down.active{border-color:#ef4444;background:#fff5f5}
+.growth-icon{font-size:16px;line-height:1;margin-bottom:2px}
+.growth-label{font-size:13.5px;font-weight:700;color:#0f0f0f}
+.growth-btn.active .growth-label{color:var(--blue)}
+.growth-btn--down.active .growth-label{color:#ef4444}
+.growth-desc{font-size:11.5px;color:#aaa;line-height:1.3}
+
+.period-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.period-label{font-size:13px;color:var(--gt);white-space:nowrap}
+.period-select{border:1.5px solid var(--bd);border-radius:8px;padding:7px 12px;font-size:13px;font-family:var(--font);outline:none;cursor:pointer;background:#fff;color:var(--black);transition:border-color .15s}
+.period-select:hover{border-color:#999}
+.period-arrow{font-size:16px;color:#aaa}
+.period-hint{font-size:12px;color:var(--blue);margin-bottom:16px;font-style:italic}
+.stability-row{display:flex;align-items:flex-start;gap:12px;margin-top:16px;padding:12px 14px;border:1.5px solid var(--bd);border-radius:12px;cursor:pointer;transition:all .15s}
+.stability-row:hover{border-color:#999;background:#fafafa}
+.stability-row.active{border-color:var(--blue);background:#eff6ff}
+.stability-title{font-size:13.5px;font-weight:600;color:var(--black)}
+.stability-sub{font-size:12px;color:#aaa;margin-top:2px;line-height:1.4}
+.contact-box.checked{background:var(--blue);border-color:var(--blue)}
+.contact-box.checked::after{content:'';display:block;width:9px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px}
+
+.filter-live-count{
+  padding:14px 26px;
+  text-align:center;
+  font-size:13.5px;
+  font-weight:500;
+  color:#1d4ed8;
+  border-top:1px solid #dbeafe;
+  background:#eff6ff;
+  transition:background .2s,border-color .2s;
+}
+.count-num{font-size:17px;font-weight:800;color:#1d4ed8}
+.count-zero{color:#ef4444}
+.count-total{color:#6b7280;font-weight:400}
+.count-hint{color:#93c5fd;font-size:12px;font-weight:400}
+
+.chip-count{font-size:11px;font-weight:600;color:#aaa;background:#f5f5f5;border-radius:10px;padding:1px 7px;margin-left:auto;flex-shrink:0}
+.sector-chip.active .chip-count{background:rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+.chip-left{display:flex;align-items:center;gap:6px}
+
+/* Визуальный намёк при Scadere — правая часть гистограммы затемняется */
+.histogram.hist-down{position:relative;}
+.histogram.hist-down::after{
+  content:'↙ компании с падением выручки';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to left, rgba(239,68,68,.13) 0%, transparent 55%);
+  border-radius:4px;
+  pointer-events:none;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  font-size:10px;
+  color:#ef4444;
+  padding:0 6px 3px;
+  font-weight:600;
+  letter-spacing:.2px;
+}
+.histogram.hist-down .bar{transition:opacity .2s;}
+.histogram.hist-down .bar:not(.dimmed){opacity:.35;}
+.histogram.hist-down .bar:first-child,
+.histogram.hist-down .bar:nth-child(2),
+.histogram.hist-down .bar:nth-child(3),
+.histogram.hist-down .bar:nth-child(4),
+.histogram.hist-down .bar:nth-child(5){opacity:1;}
+</style>
+</head>
+<body>
+
+<div class="announce-bar" id="announceBar">
+  Descopera sirius.expert &ndash;&nbsp; softul nostru de management financiar.&nbsp;
+  <a href="https://sirius.expert">Afla mai mult</a>
+  <button class="x" onclick="document.getElementById('announceBar').style.display='none'">&#215;</button>
+</div>
+
+<nav>
+  <a class="nav-logo" href="https://siriusb2b.md/ro">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="13" fill="#0f0f0f"/>
+      <circle cx="14" cy="14" r="6" fill="#fff"/>
+      <circle cx="14" cy="14" r="2.5" fill="#0f0f0f"/>
+    </svg>
+    &nbsp;Sirius&nbsp;<span class="nav-logo-sub">B2B</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://sirius.expert">Sirius.expert</a>
+    <a href="https://sirius.expert/blog/">Blog</a>
+    <a href="https://sirius.expert/efactura/">e-Factura</a>
+    <a href="https://siriusconta.md">SiriusConta <span class="badge">New!</span></a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-sel">Romana</button>
+    <a class="btn-ghost" href="https://md.sirius.expert">Intra in cont</a>
+    <button class="btn-black" onclick="window.open('https://md.sirius.expert')">Incepe gratis</button>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <h1>Gaseste orice firma.<br><span class="dim">Instant.</span></h1>
+    <p>Verifica usor datele publice despre companii.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Cauta dupa nume, IDNO, fondator.. (Ctrl+K)"/>
+      <button class="btn-cauta">Cauta</button>
+      <button class="btn-filtre" id="btn-filtre" onclick="openModal()">
+        <svg viewBox="0 0 16 16" fill="none">
+          <line x1="2" y1="4" x2="14" y2="4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="8" x2="12" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="6" y1="12" x2="10" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Filtre<span id="filtre-badge" style="display:none;background:#2563eb;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px;line-height:1.4">0</span>
+      </button>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">296 951</div><div class="stat-label">Companii inregistrate in Moldova</div></div>
+    <div class="stat"><div class="stat-num">3 550</div><div class="stat-label">Rezidenti MITP</div></div>
+    <div class="stat"><div class="stat-num">1 499</div><div class="stat-label">Clienti Sirius</div></div>
+  </div>
+</section>
+
+
+  <!-- RESULTS SECTION -->
+  <div id="results-section">
+    <div class="results-inner">
+    <div class="results-header">
+      <div class="results-count-text">
+        <strong id="results-count">0</strong> companii gasite
+      </div>
+      <select class="sort-select" id="sort-select" onchange="renderResults()">
+        <option value="revenue-desc">Revenue: mare &rarr; mic</option>
+        <option value="revenue-asc">Revenue: mic &rarr; mare</option>
+        <option value="profit-desc">Profit: mare &rarr; mic</option>
+        <option value="angajati-desc">Angajati: mare &rarr; mic</option>
+        <option value="year-asc">Cel mai vechi</option>
+        <option value="year-desc">Cel mai nou</option>
+        <option value="name-asc">Nume A &rarr; Z</option>
+      </select>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+    <div class="results-empty" id="results-empty" style="display:none">
+      <div class="results-empty-icon">&#128269;</div>
+      <div class="results-empty-title">Nicio companie gasita</div>
+      <div>Incearca sa modifici filtrele sau termenul de cautare</div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+  </div>
+
+
+<section class="features">
+  <div class="feat-card"><h3>Transparenta</h3><p>Oferim informatii esentiale precum fondatorii, datele de contact, veniturile si tipul de activitate al companiei.</p></div>
+  <div class="feat-card"><h3>Poveste de succes: Sirius Software</h3><p>Sirius Software a atras 42 clienti noi in doar 1 saptamana. L-am testat pe noi si chiar functioneaza.</p></div>
+  <div class="feat-card"><h3>Fara reclama</h3><p>Vezi toate datele companiilor fara reclama si continut platit care deranjeaza la tot pasul.</p></div>
+</section>
+
+<section class="promo">
+  <h2>Sirius.expert</h2>
+  <p class="subtitle">De la date &rarr; la facturi, in cateva click-uri</p>
+  <p>Ai gasit partenerii potriviti pe siriusb2b? Gestioneaza-ti acum incasarile cu sirius.expert.</p>
+  <a class="btn-outline" href="https://sirius.expert/incepe-gratuit">Creeaza prima factura gratuit</a>
+</section>
+
+<section class="faq">
+  <h2>Intrebari frecvente</h2>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">De unde provin datele despre companii?<div class="arrow">+</div></div><div class="faq-a">Informatiile sunt colectate din surse oficiale si publice, precum registrele de stat.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Cat de des sunt actualizate datele?<div class="arrow">+</div></div><div class="faq-a">Datele sunt actualizate periodic, pe masura ce apar informatii noi in registrele oficiale.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Pot cauta orice companie din Moldova?<div class="arrow">+</div></div><div class="faq-a">Da. In prezent, baza noastra include peste 296.000 de companii inregistrate.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Ce tipuri de informatii pot vedea?<div class="arrow">+</div></div><div class="faq-a">Poti vizualiza fondatorii, datele de contact, veniturile, domeniul de activitate. Fara costuri.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Cum difera siriusb2b de alte platforme?<div class="arrow">+</div></div><div class="faq-a">Nu afisam reclame si nu includem continut platit - doar date relevante.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Cum imi poate ajuta afacerea?<div class="arrow">+</div></div><div class="faq-a">Poti identifica rapid potentiali parteneri, clienti sau furnizori.</div></div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="nav-logo" href="https://siriusb2b.md/ro" style="font-size:18px">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" fill="#0f0f0f"/><circle cx="14" cy="14" r="6" fill="#fff"/><circle cx="14" cy="14" r="2.5" fill="#0f0f0f"/></svg>
+        &nbsp;Sirius&nbsp;<span class="nav-logo-sub" style="font-size:9px">B2B</span>
+      </a>
+      <p style="margin-top:16px;font-size:13.5px;color:#6b6b6b;line-height:1.7;max-width:340px">La Sirius suntem obsedati de curajul oamenilor de afaceri din Moldova.</p>
+      <div class="footer-contact">
+        <p>Numar de telefon</p><a href="tel:+37369562956">+373 69 562 956</a>
+        <p>Adresa de e-mail</p><a href="/cdn-cgi/l/email-protection#5024223139313e102339223925237e352820352224"><span class="__cf_email__" data-cfemail="7c080e1d151d123c0f150e15090f5219040c190e08">[email&#160;protected]</span></a>
+      </div>
+      <div class="newsletter">
+        <p>Primeste actualizari despre companii noi si functionalitati</p>
+        <div class="newsletter-row"><input type="email" placeholder="Email"/><button>Incepeti</button></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Sirius Expert</h4>
+      <a href="https://sirius.expert/ro#why">Functionalitati</a>
+      <a href="https://sirius.expert/ro#pricing">Preturi</a>
+      <a href="https://sirius.expert/ro#faq">FAQ</a>
+      <a href="https://sirius.expert/ro#contacts">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Proiecte</h4>
+      <a href="https://md.sirius.expert/">Sirius Expert</a>
+      <a href="https://sirius.expert/blog/">Blog</a>
+      <a href="https://siriusb2b.md/ro">Sirius B2B</a>
+      <a href="https://sirius.expert/efactura/">e-Factura</a>
+      <a href="https://siriusconta.md">SiriusConta</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Sirius. Toate drepturile rezervate.</p>
+    <div class="legal"><a href="#">Termeni si conditii</a><a href="#">Politica de confidentialitate</a></div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="handleOverlay(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Filtre</h2>
+      <button class="modal-close-btn" onclick="closeModal()">&#x2715;</button>
+    </div>
+        <div class="modal-body">
+
+      <!-- 1. CAEM -->
+      <div class="filter-section">
+        <h3>Domeniu de activitate (CAEM)</h3>
+        <p class="sub">Cauta dupa cod sau denumire, sau alege din lista</p>
+        <div class="selected-chips" id="sel-chips"></div>
+        <div class="caem-search-wrap">
+          <svg class="si" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="4" stroke="#aaa" stroke-width="1.5"/>
+            <line x1="10" y1="10" x2="14" y2="14" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="caem-input" id="caem-input" type="text" placeholder="Ex: 47, constructii, software..." autocomplete="off"/>
+          <div class="caem-dropdown" id="caem-dd"></div>
+        </div>
+        <div class="quick-label">Populare</div>
+        <div class="sector-grid" id="quick-top">
+          <button class="sector-chip" onclick="toggleQuick(this,'A','Agricultura')"><span class="chip-left"><span class="chip-code">A</span>Agricultura</span><span class="chip-count">6</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'F','Constructii')"><span class="chip-left"><span class="chip-code">F</span>Constructii</span><span class="chip-count">6</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'G','Comert')"><span class="chip-left"><span class="chip-code">G</span>Comert</span><span class="chip-count">4</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'H','Transport')"><span class="chip-left"><span class="chip-code">H</span>Transport</span><span class="chip-count">2</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'I','HoReCa')"><span class="chip-left"><span class="chip-code">I</span>HoReCa</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'J','IT')"><span class="chip-left"><span class="chip-code">J</span>IT</span><span class="chip-count">8</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'K','Financiar')"><span class="chip-left"><span class="chip-code">K</span>Financiar</span><span class="chip-count">3</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'C','Industrie')"><span class="chip-left"><span class="chip-code">C</span>Industrie</span><span class="chip-count">9</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'M','Profesional')"><span class="chip-left"><span class="chip-code">M</span>Profesional</span><span class="chip-count">3</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'P','Invatamant')"><span class="chip-left"><span class="chip-code">P</span>Invatamant</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'Q','Sanatate')"><span class="chip-left"><span class="chip-code">Q</span>Sanatate</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'L','Imobiliare')"><span class="chip-left"><span class="chip-code">L</span>Imobiliare</span><span class="chip-count">1</span></button>
+        </div>
+        <div class="sector-grid" id="quick-more" style="display:none;margin-top:8px">
+          <button class="sector-chip" onclick="toggleQuick(this,'B','Extractiv')"><span class="chip-left"><span class="chip-code">B</span>Extractiv</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'D','Energie')"><span class="chip-left"><span class="chip-code">D</span>Energie</span><span class="chip-count">3</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'E','Apa/Deseuri')"><span class="chip-left"><span class="chip-code">E</span>Apa/Deseuri</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'N','Administrativ')"><span class="chip-left"><span class="chip-code">N</span>Administrativ</span><span class="chip-count">2</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'R','Cultura')"><span class="chip-left"><span class="chip-code">R</span>Cultura</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'S','Alte servicii')"><span class="chip-left"><span class="chip-code">S</span>Alte servicii</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'O','Adm. publica')"><span class="chip-left"><span class="chip-code">O</span>Adm. publica</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'T','Gospodarii')"><span class="chip-left"><span class="chip-code">T</span>Gospodarii</span><span class="chip-count">0</span></button>
+          <button class="sector-chip" onclick="toggleQuick(this,'U','Extrateritorial')"><span class="chip-left"><span class="chip-code">U</span>Extrateritorial</span><span class="chip-count">0</span></button>
+        </div>
+        <button class="show-more-btn" id="show-more-btn" onclick="toggleMoreSectors()">
+          <span id="show-more-lbl">Afiseaza mai multe</span>
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+            <polyline points="3,5 8,11 13,5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 2. LOCALITATE -->
+      <div class="filter-section">
+        <h3>Localitate</h3>
+        <p class="sub">Selecteaza orasul sau raionul</p>
+        <div class="selected-chips" id="loc-sel-chips"></div>
+        <div class="caem-search-wrap">
+          <svg class="si" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="7" cy="7" r="4.5" stroke="#aaa" stroke-width="1.5"/>
+            <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="caem-input" id="loc-input" type="text" placeholder="Ex: Chisinau, Balti, Orhei..." autocomplete="off"/>
+          <div class="caem-dropdown" id="loc-dd"></div>
+        </div>
+        <div class="quick-label">Populare</div>
+        <div class="sector-grid" id="loc-top">
+          <button class="sector-chip" data-loc="Chisinau" onclick="toggleLoc(this,'Chisinau')"><span class="chip-left">&#127968;&nbsp;Chisinau</span><span class="chip-count">30</span></button>
+          <button class="sector-chip" data-loc="Balti" onclick="toggleLoc(this,'Balti')"><span class="chip-left">&#127961;&nbsp;Balti</span><span class="chip-count">5</span></button>
+          <button class="sector-chip" data-loc="Cahul" onclick="toggleLoc(this,'Cahul')"><span class="chip-left">&#127961;&nbsp;Cahul</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Ungheni" onclick="toggleLoc(this,'Ungheni')"><span class="chip-left">&#127961;&nbsp;Ungheni</span><span class="chip-count">2</span></button>
+          <button class="sector-chip" data-loc="Soroca" onclick="toggleLoc(this,'Soroca')"><span class="chip-left">&#127961;&nbsp;Soroca</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Orhei" onclick="toggleLoc(this,'Orhei')"><span class="chip-left">&#127961;&nbsp;Orhei</span><span class="chip-count">2</span></button>
+          <button class="sector-chip" data-loc="Straseni" onclick="toggleLoc(this,'Straseni')"><span class="chip-left">&#127961;&nbsp;Straseni</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Hincesti" onclick="toggleLoc(this,'Hincesti')"><span class="chip-left">&#127961;&nbsp;Hincesti</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Falesti" onclick="toggleLoc(this,'Falesti')"><span class="chip-left">&#127961;&nbsp;Falesti</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Edinet" onclick="toggleLoc(this,'Edinet')"><span class="chip-left">&#127961;&nbsp;Edinet</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Drochia" onclick="toggleLoc(this,'Drochia')"><span class="chip-left">&#127961;&nbsp;Drochia</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Ialoveni" onclick="toggleLoc(this,'Ialoveni')"><span class="chip-left">&#127961;&nbsp;Ialoveni</span><span class="chip-count">1</span></button>
+        </div>
+        <div class="sector-grid" id="loc-more" style="display:none;margin-top:8px">
+          <button class="sector-chip" data-loc="Anenii Noi" onclick="toggleLoc(this,'Anenii Noi')"><span class="chip-left">&#127961;&nbsp;Anenii Noi</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Briceni" onclick="toggleLoc(this,'Briceni')"><span class="chip-left">&#127961;&nbsp;Briceni</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Cantemir" onclick="toggleLoc(this,'Cantemir')"><span class="chip-left">&#127961;&nbsp;Cantemir</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Calarasi" onclick="toggleLoc(this,'Calarasi')"><span class="chip-left">&#127961;&nbsp;Calarasi</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Causeni" onclick="toggleLoc(this,'Causeni')"><span class="chip-left">&#127961;&nbsp;Causeni</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Criuleni" onclick="toggleLoc(this,'Criuleni')"><span class="chip-left">&#127961;&nbsp;Criuleni</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Floresti" onclick="toggleLoc(this,'Floresti')"><span class="chip-left">&#127961;&nbsp;Floresti</span><span class="chip-count">1</span></button>
+          <button class="sector-chip" data-loc="Glodeni" onclick="toggleLoc(this,'Glodeni')"><span class="chip-left">&#127961;&nbsp;Glodeni</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Leova" onclick="toggleLoc(this,'Leova')"><span class="chip-left">&#127961;&nbsp;Leova</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Nisporeni" onclick="toggleLoc(this,'Nisporeni')"><span class="chip-left">&#127961;&nbsp;Nisporeni</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Ocnita" onclick="toggleLoc(this,'Ocnita')"><span class="chip-left">&#127961;&nbsp;Ocnita</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Rezina" onclick="toggleLoc(this,'Rezina')"><span class="chip-left">&#127961;&nbsp;Rezina</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Riscani" onclick="toggleLoc(this,'Riscani')"><span class="chip-left">&#127961;&nbsp;Riscani</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Singerei" onclick="toggleLoc(this,'Singerei')"><span class="chip-left">&#127961;&nbsp;Singerei</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Stefan Voda" onclick="toggleLoc(this,'Stefan Voda')"><span class="chip-left">&#127961;&nbsp;Stefan Voda</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Taraclia" onclick="toggleLoc(this,'Taraclia')"><span class="chip-left">&#127961;&nbsp;Taraclia</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Telenesti" onclick="toggleLoc(this,'Telenesti')"><span class="chip-left">&#127961;&nbsp;Telenesti</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Comrat" onclick="toggleLoc(this,'Comrat')"><span class="chip-left">&#127961;&nbsp;Comrat</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Ceadir-Lunga" onclick="toggleLoc(this,'Ceadir-Lunga')"><span class="chip-left">&#127961;&nbsp;Ceadir-Lunga</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Tiraspol" onclick="toggleLoc(this,'Tiraspol')"><span class="chip-left">&#127961;&nbsp;Tiraspol</span><span class="chip-count" style="opacity:.4">0</span></button>
+          <button class="sector-chip" data-loc="Bender" onclick="toggleLoc(this,'Bender')"><span class="chip-left">&#127961;&nbsp;Bender</span><span class="chip-count" style="opacity:.4">0</span></button>
+        </div>
+        <button class="show-more-btn" id="loc-more-btn" onclick="toggleMoreLoc()">
+          <span id="loc-more-lbl">Afiseaza mai multe raioane</span>
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+            <polyline points="3,5 8,11 13,5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 3. DINAMICA VENITURILOR -->
+      <div class="filter-section">
+        <h3>Dinamica veniturilor</h3>
+        <p class="sub">Alege tipul de crestere, apoi seteaza perioada de comparatie</p>
+
+        <!-- Growth type buttons FIRST -->
+        <div class="growth-grid">
+          <button class="growth-btn" data-growth="any" onclick="selectGrowth(this)">
+            <span class="growth-icon">&#128200;</span>
+            <span class="growth-label">Orice crestere</span>
+            <span class="growth-desc">Venituri mai mari fata de anul de baza</span>
+          </button>
+          <button class="growth-btn" data-growth="20" onclick="selectGrowth(this)">
+            <span class="growth-icon">&#9650;</span>
+            <span class="growth-label">+20% si mai mult</span>
+            <span class="growth-desc">Crestere semnificativa</span>
+          </button>
+          <button class="growth-btn" data-growth="50" onclick="selectGrowth(this)">
+            <span class="growth-icon">&#9650;&#9650;</span>
+            <span class="growth-label">+50% si mai mult</span>
+            <span class="growth-desc">Crestere rapida</span>
+          </button>
+          <button class="growth-btn" data-growth="x2" onclick="selectGrowth(this)">
+            <span class="growth-icon" style="font-weight:800;font-size:17px">x2</span>
+            <span class="growth-label">Dublare (x2)</span>
+            <span class="growth-desc">Venituri crescute de 2 ori</span>
+          </button>
+          <button class="growth-btn" data-growth="x3" onclick="selectGrowth(this)">
+            <span class="growth-icon" style="font-weight:800;font-size:17px">x3</span>
+            <span class="growth-label">Triplare (x3)</span>
+            <span class="growth-desc">Venituri crescute de 3 ori</span>
+          </button>
+          <button class="growth-btn growth-btn--down" data-growth="down" onclick="selectGrowth(this)">
+            <span class="growth-icon">&#128201;</span>
+            <span class="growth-label">Scadere</span>
+            <span class="growth-desc">Venituri mai mici fata de anul de baza</span>
+          </button>
+        </div>
+
+        <!-- Stability bonus filter -->
+        <div class="stability-row" onclick="toggleStability(this)">
+          <div class="contact-box" id="stability-box"></div>
+          <div>
+            <div class="stability-title">&#127942; Crestere stabila 3 ani consecutiv</div>
+            <div class="stability-sub">Compania a crescut in fiecare an — indicator de fiabilitate</div>
+          </div>
+        </div>
+
+        <!-- Period selector AFTER buttons -->
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--bd)">
+          <div class="period-row">
+            <span class="period-label">Perioada de comparatie:</span>
+            <select class="period-select" id="period-from" onchange="updatePeriodLabel()">
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023" selected>2023</option>
+            </select>
+            <span class="period-arrow">&#8594;</span>
+            <select class="period-select" id="period-to" onchange="updatePeriodLabel()">
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024" selected>2024</option>
+            </select>
+          </div>
+          <p class="period-hint" id="period-hint" style="margin-bottom:0">
+            Afiseaza companiile care au crescut intre 2023 si 2024
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 4. VENITURI -->
+      <div class="filter-section">
+        <h3>Venituri (Revenue)</h3>
+        <p class="sub">Veniturile anuale ale companiei, MDL</p>
+        <div class="histogram" id="hist-revenue"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-revenue"></div></div>
+          <input type="range" id="rev-min" min="0" max="100" value="0" step="1" oninput="updateRange('revenue')">
+          <input type="range" id="rev-max" min="0" max="100" value="100" step="1" oninput="updateRange('revenue')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="rev-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="rev-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 5. PROFIT -->
+      <div class="filter-section">
+        <h3>Profit</h3>
+        <p class="sub">Profitul net anual al companiei, MDL</p>
+        <div class="histogram" id="hist-profit"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-profit"></div></div>
+          <input type="range" id="prf-min" min="0" max="100" value="0" step="1" oninput="updateRange('profit')">
+          <input type="range" id="prf-max" min="0" max="100" value="100" step="1" oninput="updateRange('profit')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="prf-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="prf-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 6. ANGAJATI -->
+      <div class="filter-section">
+        <h3>Nr. Angajati</h3>
+        <p class="sub">Numarul de angajati ai companiei</p>
+        <div class="histogram" id="hist-angajati"></div>
+        <div class="range-track-wrap">
+          <div class="range-track"><div class="range-fill" id="fill-angajati"></div></div>
+          <input type="range" id="ang-min" min="0" max="100" value="0" step="1" oninput="updateRange('angajati')">
+          <input type="range" id="ang-max" min="0" max="100" value="100" step="1" oninput="updateRange('angajati')">
+        </div>
+        <div class="range-values">
+          <div class="range-val-box"><label>Minim</label><input type="text" id="ang-min-txt"/></div>
+          <div class="range-val-box"><label>Maxim</label><input type="text" id="ang-max-txt"/></div>
+        </div>
+      </div>
+
+      <!-- 7. AN FONDARE -->
+      <div class="filter-section">
+        <h3>An de fondare</h3>
+        <p class="sub">Intervalul in care a fost inregistrata compania</p>
+        <div class="year-range-row">
+          <input class="year-input" id="year-from" type="number" min="1990" max="2025" placeholder="De la" oninput="validateYear(this,1990,2025)"/>
+          <span class="year-sep">&#8212;</span>
+          <input class="year-input" id="year-to" type="number" min="1990" max="2025" placeholder="Pana la" oninput="validateYear(this,1990,2025)"/>
+        </div>
+        <div class="year-presets">
+          <button class="preset-chip" onclick="setYearPreset(this,1990,1999)">1990-1999</button>
+          <button class="preset-chip" onclick="setYearPreset(this,2000,2009)">2000-2009</button>
+          <button class="preset-chip" onclick="setYearPreset(this,2010,2019)">2010-2019</button>
+          <button class="preset-chip" onclick="setYearPreset(this,2020,2025)">Ultimii 5 ani</button>
+          <button class="preset-chip" onclick="setYearPreset(this,2023,2025)">Startup (2023+)</button>
+        </div>
+      </div>
+
+      <!-- 8. CONTACTE -->
+      <div class="filter-section">
+        <h3>Prezenta online si contacte</h3>
+        <p class="sub">Arata doar companiile care au</p>
+        <div class="contact-grid">
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#127760;</span><span class="contact-label">Website</span><span class="chip-count">40</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128222;</span><span class="contact-label">Telefon</span><span class="chip-count">50</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128140;</span><span class="contact-label">Email</span><span class="chip-count">47</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128247;</span><span class="contact-label">Instagram</span><span class="chip-count">12</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128081;</span><span class="contact-label">Facebook</span><span class="chip-count">21</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128232;</span><span class="contact-label">Telegram</span><span class="chip-count" style="opacity:.4">0</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#127381;</span><span class="contact-label">TikTok</span><span class="chip-count">2</span>
+          </div>
+          <div class="contact-check" onclick="toggleContact(this)">
+            <div class="contact-box"></div><span class="contact-icon">&#128188;</span><span class="contact-label">LinkedIn</span><span class="chip-count">14</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. GEN -->
+      <div class="filter-section" style="border-bottom:none">
+        <h3>Genul fondatorului</h3>
+        <p class="sub">Filtreaza dupa genul fondatorului principal</p>
+        <div class="gender-grid">
+          <button class="gender-chip" onclick="toggleGender(this,'M')">
+            <span style="display:flex;align-items:center;gap:8px"><span class="gi">&#128104;</span>Barbat</span>
+            <span class="chip-count">39</span>
+          </button>
+          <button class="gender-chip" onclick="toggleGender(this,'F')">
+            <span style="display:flex;align-items:center;gap:8px"><span class="gi">&#128105;</span>Femeie</span>
+            <span class="chip-count">11</span>
+          </button>
+        </div>
+      </div>
+
+    <div class="filter-live-count" id="filter-live-count" style="display:none">
+      <span id="live-count-text"></span>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-reset" onclick="resetFilters()">Reseteaza</button>
+      <button class="btn-apply" id="btn-apply" onclick="applyFilters()">Aplica filtrele</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var caemData=[
+  {code:'01',name:'Cultura vegetala si animala, vanatoare'},
+  {code:'02',name:'Silvicultura si exploatarea forestiera'},
+  {code:'03',name:'Pescuitul si acvacultura'},
+  {code:'10',name:'Industria alimentara'},
+  {code:'11',name:'Fabricarea bauturilor'},
+  {code:'13',name:'Fabricarea produselor textile'},
+  {code:'14',name:'Fabricarea articolelor de imbracaminte'},
+  {code:'16',name:'Prelucrarea lemnului'},
+  {code:'17',name:'Fabricarea hartiei si cartonului'},
+  {code:'18',name:'Tiparirea si reproducerea inregistrarilor'},
+  {code:'20',name:'Industria chimica'},
+  {code:'21',name:'Fabricarea produselor farmaceutice'},
+  {code:'22',name:'Fabricarea produselor din cauciuc si mase plastice'},
+  {code:'23',name:'Fabricarea produselor din minerale nemetalice'},
+  {code:'24',name:'Industria metalurgica'},
+  {code:'25',name:'Industria constructiilor metalice'},
+  {code:'26',name:'Fabricarea calculatoarelor si produselor electronice'},
+  {code:'27',name:'Fabricarea echipamentelor electrice'},
+  {code:'28',name:'Fabricarea de masini si utilaje'},
+  {code:'31',name:'Fabricarea mobilei'},
+  {code:'32',name:'Alte activitati de productie industriala'},
+  {code:'35',name:'Productia si furnizarea de energie electrica si termica'},
+  {code:'36',name:'Captarea, tratarea si distributia apei'},
+  {code:'38',name:'Colectarea, tratarea si eliminarea deseurilor'},
+  {code:'41',name:'Constructii de cladiri'},
+  {code:'42',name:'Lucrari de geniu civil'},
+  {code:'43',name:'Lucrari speciale de constructii'},
+  {code:'45',name:'Comertul cu ridicata si amanuntul al autovehiculelor'},
+  {code:'46',name:'Comertul cu ridicata, cu exceptia autovehiculelor'},
+  {code:'47',name:'Comertul cu amanuntul, cu exceptia autovehiculelor'},
+  {code:'49',name:'Transporturi terestre si prin conducte'},
+  {code:'52',name:'Depozitare si activitati auxiliare pentru transporturi'},
+  {code:'53',name:'Activitati de posta si de curierat'},
+  {code:'55',name:'Hoteluri si alte facilitati de cazare'},
+  {code:'56',name:'Restaurante si alte activitati de alimentatie'},
+  {code:'61',name:'Telecomunicatii'},
+  {code:'62',name:'Activitati de servicii in tehnologia informatiei'},
+  {code:'63',name:'Activitati de servicii informatice'},
+  {code:'64',name:'Intermedieri financiare'},
+  {code:'65',name:'Activitati de asigurare si fonduri de pensii'},
+  {code:'66',name:'Activitati auxiliare intermedierilor financiare'},
+  {code:'68',name:'Tranzactii imobiliare'},
+  {code:'69',name:'Activitati juridice si de contabilitate'},
+  {code:'70',name:'Activitati de consultanta in management'},
+  {code:'71',name:'Activitati de arhitectura si inginerie'},
+  {code:'72',name:'Cercetare si dezvoltare'},
+  {code:'73',name:'Publicitate si studieri ale pietei'},
+  {code:'74',name:'Alte activitati profesionale stiintifice'},
+  {code:'75',name:'Activitati veterinare'},
+  {code:'77',name:'Activitati de inchiriere si leasing'},
+  {code:'78',name:'Activitati de servicii privind forta de munca'},
+  {code:'79',name:'Activitati ale agentiilor de turism'},
+  {code:'80',name:'Activitati de investigatii si protectie'},
+  {code:'85',name:'Invatamant'},
+  {code:'86',name:'Activitati referitoare la sanatatea umana'},
+  {code:'88',name:'Activitati de asistenta sociala'},
+  {code:'90',name:'Activitati de creatie, artistice si de divertisment'},
+  {code:'93',name:'Activitati sportive si recreationale'},
+  {code:'95',name:'Repararea calculatoarelor si bunurilor personale'},
+  {code:'96',name:'Alte activitati de servicii personale'}
+];
+
+var locData=[
+  'Chisinau','Balti','Cahul','Ungheni','Soroca','Orhei','Straseni','Hincesti',
+  'Falesti','Edinet','Anenii Noi','Basarabeasca','Briceni','Cantemir','Calarasi',
+  'Causeni','Cimislia','Criuleni','Donduseni','Drochia','Floresti','Glodeni',
+  'Ialoveni','Leova','Nisporeni','Ocnita','Rezina','Riscani','Singerei',
+  'Soldanesti','Stefan Voda','Taraclia','Telenesti','Comrat','Ceadir-Lunga',
+  'Tiraspol','Bender'
+];
+
+function openModal(){
+  updateBadge();
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  setTimeout(function(){
+    var b=document.querySelector('.modal-body');
+    if(b)b.scrollTop=0;
+  },10);
+}
+function closeModal(){document.getElementById('overlay').classList.remove('active');document.body.style.overflow='';}
+function handleOverlay(e){if(e.target===document.getElementById('overlay'))closeModal();}
+function toggleFaq(item){
+  var o=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
+  if(!o)item.classList.add('open');
+}
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('searchInput').focus();}
+  if(e.key==='Escape')closeModal();
+});
+
+var histData={
+  revenue:[8,12,18,28,42,60,80,98,112,124,132,136,130,120,108,94,80,66,54,44,35,27,21,16,12,9,7,5,4,3],
+  profit:[20,32,50,72,94,112,124,128,122,112,98,84,70,58,47,38,30,23,18,13,10,8,6,4,3,2,2,1,1,1],
+  angajati:[140,132,118,102,88,74,62,52,43,36,30,25,21,17,14,12,10,8,7,6,5,4,3,3,2,2,2,1,1,1],
+  growth:[4,6,10,16,24,36,52,70,84,92,96,92,84,72,60,50,40,32,25,19,14,11,8,6,4,3,2,2,1,1]
+};
+
+// ── ЕДИНАЯ СИСТЕМА МАСШТАБОВ ──
+// Revenue:  0..100 slider → 0..500M MDL  (1 unit = 5M)
+// Profit:   0..100 slider → 0..100M MDL  (1 unit = 1M)
+// Angajati: 0..100 slider → 0..3500      (1 unit = 35)
+var SCALE = {
+  revenue:  { max: 500000000,  unit: 5000000  },
+  profit:   { max: 500000000,  unit: 5000000  },
+  angajati: { max: 3500,       unit: 35       }
+};
+
+function sliderToReal(v, id) {
+  return Math.round(v * SCALE[id].unit);
+}
+function realToSlider(real, id) {
+  return Math.min(100, Math.max(0, Math.round(real / SCALE[id].unit)));
+}
+
+function fmtRevenue(v){
+  var m = sliderToReal(v, 'revenue');
+  if(v >= 100) return '500M+ MDL';
+  if(m >= 1000000) return (m/1000000).toFixed(0) + 'M MDL';
+  if(m >= 1000) return Math.round(m/1000) + 'K MDL';
+  return m > 0 ? m + ' MDL' : '0 MDL';
+}
+function fmtProfit(v){
+  var m = sliderToReal(v, 'profit');
+  if(v >= 100) return '500M+ MDL';
+  if(m >= 1000000) return (m/1000000).toFixed(0) + 'M MDL';
+  if(m >= 1000) return Math.round(m/1000) + 'K MDL';
+  return m > 0 ? m + ' MDL' : '0 MDL';
+}
+function fmtAngajati(v){
+  var n = sliderToReal(v, 'angajati');
+  if(v >= 100) return '3500+';
+  return n > 0 ? String(n) : '0';
+}
+
+
+var configs={
+  revenue:{minId:'rev-min',maxId:'rev-max',minTxt:'rev-min-txt',maxTxt:'rev-max-txt',fmt:fmtRevenue},
+  profit:{minId:'prf-min',maxId:'prf-max',minTxt:'prf-min-txt',maxTxt:'prf-max-txt',fmt:fmtProfit},
+  angajati:{minId:'ang-min',maxId:'ang-max',minTxt:'ang-min-txt',maxTxt:'ang-max-txt',fmt:fmtAngajati},
+};
+
+function buildHistogram(id,data){
+  var el=document.getElementById('hist-'+id);
+  var mx=Math.max.apply(null,data);
+  el.innerHTML=data.map(function(v){return'<div class="bar" style="height:'+Math.round(v/mx*100)+'%"></div>';}).join('');
+}
+
+function updateRange(id, skipLinked){
+  var cfg=configs[id];
+  var mnEl=document.getElementById(cfg.minId),mxEl=document.getElementById(cfg.maxId);
+  var mn=parseInt(mnEl.value),mx=parseInt(mxEl.value);
+  if(mn>=mx){if(document.activeElement===mnEl){mn=mx-1;mnEl.value=mn;}else{mx=mn+1;mxEl.value=mx;}}
+  document.getElementById('fill-'+id).style.left=mn+'%';
+  document.getElementById('fill-'+id).style.width=(mx-mn)+'%';
+  document.getElementById(cfg.minTxt).value=cfg.fmt(mn);
+  document.getElementById(cfg.maxTxt).value=cfg.fmt(mx);
+  var bars=document.querySelectorAll('#hist-'+id+' .bar'),n=bars.length;
+  bars.forEach(function(bar,i){var pos=Math.round(i/(n-1)*100);bar.classList.toggle('dimmed',pos<mn||pos>mx);});
+  if(id==='growth')document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('active');});
+
+  // Когда двигают profit вверх — revenue min не может быть ниже profit min
+  if(id === 'profit' && !skipLinked){
+    var revMinEl = document.getElementById('rev-min');
+    var revMaxEl = document.getElementById('rev-max');
+    var realPrfMin = sliderToReal(mn, 'profit');
+    var realPrfMax = sliderToReal(mx, 'profit');
+    var revMinFromPrf = realToSlider(realPrfMin, 'revenue');
+    var revMinFromPrfMax = realToSlider(realPrfMax, 'revenue');
+    var changed = false;
+    if(parseInt(revMinEl.value) < revMinFromPrf){ revMinEl.value = revMinFromPrf; changed = true; }
+    if(parseInt(revMaxEl.value) < revMinFromPrfMax){ revMaxEl.value = Math.min(100, revMinFromPrfMax); changed = true; }
+    if(changed) updateRange('revenue', true);
+  }
+
+  // Когда двигают revenue вниз — profit не может превышать выручку
+  if(id === 'revenue' && !skipLinked){
+    var prfMinEl = document.getElementById('prf-min');
+    var prfMaxEl = document.getElementById('prf-max');
+    var realRevMin = sliderToReal(mn, 'revenue');
+    var realRevMax = sliderToReal(mx, 'revenue');
+    var maxProfitFromRevMin = realToSlider(realRevMin, 'profit');
+    var maxProfitFromRevMax = realToSlider(realRevMax, 'profit');
+    var changed = false;
+    if(parseInt(prfMinEl.value) > maxProfitFromRevMin){ prfMinEl.value = maxProfitFromRevMin; changed = true; }
+    if(parseInt(prfMaxEl.value) > maxProfitFromRevMax){ prfMaxEl.value = Math.max(parseInt(prfMinEl.value)+1, maxProfitFromRevMax); changed = true; }
+    if(changed) updateRange('profit', true);
+  }
+}
+
+function parseToSlider(raw, id){
+  var s = raw.trim().toLowerCase().replace(/\s/g,'');
+  var num = parseFloat(s.replace(/[^0-9.\-]/g,''));
+  if(isNaN(num)) return null;
+  var real;
+  if(id === 'revenue' || id === 'profit'){
+    if(s.indexOf('mrd') > -1) real = num * 1000000000;
+    else if(s.indexOf('m') > -1) real = num * 1000000;
+    else if(s.indexOf('k') > -1) real = num * 1000;
+    else real = num;
+  } else {
+    real = num;
+  }
+  return realToSlider(real, id);
+}
+
+function bindTextInput(txtId,id,isMin){
+  var el=document.getElementById(txtId);
+  el.addEventListener('keydown',function(e){if(e.key==='Enter')e.target.blur();});
+  el.addEventListener('blur',function(){
+    var p=parseToSlider(this.value,id);if(p===null){updateRange(id);return;}
+    var cfg=configs[id],ov=parseInt(document.getElementById(isMin?cfg.maxId:cfg.minId).value);
+    if(isMin)document.getElementById(cfg.minId).value=Math.min(p,ov-1);
+    else document.getElementById(cfg.maxId).value=Math.max(p,ov+1);
+    updateRange(id);
+  });
+}
+
+function toggleYearChip(el){el.classList.toggle('active');}
+
+// CAEM
+var selectedCodes={};
+function normalize(s){
+  return s.toLowerCase()
+    .replace(/[\u0103\u00e2\u0101]/g,'a').replace(/[\u00ee\u012b]/g,'i')
+    .replace(/[\u015f\u0219]/g,'s').replace(/[\u0163\u021b]/g,'t')
+    .replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim();
+}
+function highlight(text,q){
+  var nt=normalize(text),nq=normalize(q),idx=nt.indexOf(nq);
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<em>'+text.slice(idx,idx+q.length)+'</em>'+text.slice(idx+q.length);
+}
+
+function renderSelChips(){
+  var wrap=document.getElementById('sel-chips');
+  var keys=Object.keys(selectedCodes);
+  wrap.className='selected-chips'+(keys.length?' has-items':'');
+  wrap.innerHTML=keys.map(function(code){
+    return '<span class="sel-chip"><span class="sel-chip-code">'+code+'</span>'+selectedCodes[code]+'<span class="sel-chip-x" data-rmcode="'+code+'">&#x2715;</span></span>';
+  }).join('');
+  wrap.querySelectorAll('[data-rmcode]').forEach(function(el){
+    el.addEventListener('click',function(){removeCode(this.getAttribute('data-rmcode'));});
+  });
+}
+function removeCode(code){delete selectedCodes[code];renderSelChips();syncQuick();renderDropdown(document.getElementById('caem-input').value);}
+function toggleQuick(el,code,name){
+  if(selectedCodes[code]){delete selectedCodes[code];el.classList.remove('active');}
+  else{selectedCodes[code]=name;el.classList.add('active');}
+  renderSelChips();renderDropdown(document.getElementById('caem-input').value);
+}
+function syncQuick(){
+  document.querySelectorAll('#quick-top .sector-chip,#quick-more .sector-chip').forEach(function(btn){
+    var code=btn.querySelector('.chip-code').textContent;
+    btn.classList.toggle('active',!!selectedCodes[code]);
+  });
+}
+function renderDropdown(q){
+  var dd=document.getElementById('caem-dd');
+  if(!q){dd.classList.remove('open');return;}
+  var nq=normalize(q);
+  var isNum=/^\d+$/.test(q.trim());
+  var results=caemData.filter(function(item){
+    return isNum?item.code.startsWith(q.trim()):normalize(item.name).indexOf(nq)>-1;
+  }).slice(0,10);
+  if(!results.length){dd.innerHTML='<div class="caem-empty">Niciun rezultat</div>';dd.classList.add('open');return;}
+  dd.innerHTML=results.map(function(item){
+    var sel=!!selectedCodes[item.code];
+    return '<div class="caem-item" data-code="'+item.code+'" data-name="'+item.name.replace(/"/g,'&quot;')+'">'
+      +'<span class="caem-item-code">'+item.code+'</span>'
+      +'<span class="caem-item-name">'+highlight(item.name,q)+'</span>'
+      +(sel?'<span class="caem-check">&#10003;</span>':'')+'</div>';
+  }).join('');
+  dd.classList.add('open');
+}
+document.getElementById('caem-dd').addEventListener('click',function(e){
+  var item=e.target.closest('.caem-item');
+  if(!item)return;
+  var code=item.getAttribute('data-code'),name=item.getAttribute('data-name');
+  if(selectedCodes[code])delete selectedCodes[code]; else selectedCodes[code]=name;
+  renderSelChips();syncQuick();renderDropdown(document.getElementById('caem-input').value);
+});
+var caemInput=document.getElementById('caem-input');
+caemInput.addEventListener('input',function(){renderDropdown(this.value);});
+caemInput.addEventListener('focus',function(){if(this.value)renderDropdown(this.value);});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.caem-search-wrap')){
+    document.getElementById('caem-dd').classList.remove('open');
+    document.getElementById('loc-dd').classList.remove('open');
+  }
+});
+function toggleMoreSectors(){
+  var more=document.getElementById('quick-more');
+  var btn=document.getElementById('show-more-btn');
+  var lbl=document.getElementById('show-more-lbl');
+  var open=more.style.display!=='none';
+  more.style.display=open?'none':'grid';
+  btn.classList.toggle('open',!open);
+  lbl.textContent=open?'Afiseaza mai multe':'Afiseaza mai putine';
+}
+
+// LOCALITATE
+var selectedLocs={};
+function renderLocChips(){
+  var wrap=document.getElementById('loc-sel-chips');
+  var keys=Object.keys(selectedLocs);
+  wrap.className='selected-chips'+(keys.length?' has-items':'');
+  wrap.innerHTML=keys.map(function(loc){
+    return '<span class="sel-chip"><span class="sel-chip-code">&#127961;</span>'+loc+'<span class="sel-chip-x" data-rmloc="'+loc+'">&#x2715;</span></span>';
+  }).join('');
+  wrap.querySelectorAll('[data-rmloc]').forEach(function(el){
+    el.addEventListener('click',function(){removeLoc(this.getAttribute('data-rmloc'));});
+  });
+}
+function removeLoc(loc){delete selectedLocs[loc];renderLocChips();syncLocQuick();renderLocDropdown(document.getElementById('loc-input').value);}
+function toggleLoc(el,loc){
+  if(selectedLocs[loc]){delete selectedLocs[loc];el.classList.remove('active');}
+  else{selectedLocs[loc]=true;el.classList.add('active');}
+  renderLocChips();renderLocDropdown(document.getElementById('loc-input').value);
+}
+function syncLocQuick(){
+  document.querySelectorAll('#loc-top .sector-chip,#loc-more .sector-chip').forEach(function(btn){
+    var loc=btn.getAttribute('data-loc');
+    if(loc)btn.classList.toggle('active',!!selectedLocs[loc]);
+  });
+}
+function renderLocDropdown(q){
+  var dd=document.getElementById('loc-dd');
+  if(!q){dd.classList.remove('open');return;}
+  var nq=normalize(q);
+  var results=locData.filter(function(loc){return normalize(loc).indexOf(nq)>-1;}).slice(0,8);
+  if(!results.length){dd.innerHTML='<div class="caem-empty">Niciun rezultat</div>';dd.classList.add('open');return;}
+  dd.innerHTML=results.map(function(loc){
+    var sel=!!selectedLocs[loc];
+    return '<div class="caem-item" data-loc="'+loc+'">'
+      +'<span class="caem-item-code" style="color:#555;font-size:14px">&#127961;</span>'
+      +'<span class="caem-item-name">'+highlight(loc,q)+'</span>'
+      +(sel?'<span class="caem-check">&#10003;</span>':'')+'</div>';
+  }).join('');
+  dd.classList.add('open');
+}
+document.getElementById('loc-dd').addEventListener('click',function(e){
+  var item=e.target.closest('.caem-item');
+  if(!item)return;
+  var loc=item.getAttribute('data-loc');
+  if(selectedLocs[loc])delete selectedLocs[loc]; else selectedLocs[loc]=true;
+  renderLocChips();syncLocQuick();renderLocDropdown(document.getElementById('loc-input').value);
+});
+var locInput=document.getElementById('loc-input');
+locInput.addEventListener('input',function(){renderLocDropdown(this.value);});
+locInput.addEventListener('focus',function(){if(this.value)renderLocDropdown(this.value);});
+function toggleMoreLoc(){
+  var more=document.getElementById('loc-more');
+  var btn=document.getElementById('loc-more-btn');
+  var lbl=document.getElementById('loc-more-lbl');
+  var open=more.style.display!=='none';
+  more.style.display=open?'none':'grid';
+  btn.classList.toggle('open',!open);
+  lbl.textContent=open?'Afiseaza mai multe raioane':'Afiseaza mai putine';
+}
+
+// AN FONDARE
+function setYearPreset(btn,from,to){
+  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('year-from').value=from;
+  document.getElementById('year-to').value=to;
+}
+document.getElementById('year-from').addEventListener('input',function(){
+  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
+});
+document.getElementById('year-to').addEventListener('input',function(){
+  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
+});
+
+// GEN
+var selectedGenders={};
+function toggleGender(el,val){
+  if(selectedGenders[val]){delete selectedGenders[val];el.classList.remove('active');}
+  else{selectedGenders[val]=true;el.classList.add('active');}
+}
+
+// CONTACTE
+function toggleContact(el){el.classList.toggle('active');}
+
+// RESET
+// ── DINAMICA VENITURILOR ──
+var selectedGrowth = null;
+var stabilityActive = false;
+
+function updatePeriodLabel() {
+  var from = document.getElementById('period-from').value;
+  var to   = document.getElementById('period-to').value;
+  var hint = document.getElementById('period-hint');
+
+  if (parseInt(from) >= parseInt(to)) {
+    // auto-fix: to must be > from
+    var toEl = document.getElementById('period-to');
+    for (var i = 0; i < toEl.options.length; i++) {
+      if (parseInt(toEl.options[i].value) > parseInt(from)) {
+        toEl.value = toEl.options[i].value;
+        break;
+      }
+    }
+    to = document.getElementById('period-to').value;
+  }
+  hint.textContent = 'Afiseaza companiile care au crescut intre ' + from + ' si ' + to;
+}
+
+function selectGrowth(btn) {
+  var val = btn.getAttribute('data-growth');
+  document.querySelectorAll('.growth-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (selectedGrowth === val) {
+    selectedGrowth = null;
+    // Снимаем визуальный намёк на падение
+    document.getElementById('hist-revenue').classList.remove('hist-down');
+    document.getElementById('hist-profit').classList.remove('hist-down');
+  } else {
+    selectedGrowth = val;
+    btn.classList.add('active');
+    if (val === 'down') {
+      // Визуальный намёк — затемняем правую часть гистограмм
+      document.getElementById('hist-revenue').classList.add('hist-down');
+      document.getElementById('hist-profit').classList.add('hist-down');
+      // Сбрасываем Crestere stabila
+      if (stabilityActive) {
+        stabilityActive = false;
+        var stabRow = document.querySelector('.stability-row');
+        if (stabRow) stabRow.classList.remove('active');
+        var stabBox = document.getElementById('stability-box');
+        if (stabBox) stabBox.classList.remove('checked');
+      }
+    } else {
+      // Убираем намёк если выбрали рост
+      document.getElementById('hist-revenue').classList.remove('hist-down');
+      document.getElementById('hist-profit').classList.remove('hist-down');
+    }
+  }
+  setTimeout(updateLiveCount, 50);
+}
+
+function toggleStability(el) {
+  stabilityActive = !stabilityActive;
+  el.classList.toggle('active', stabilityActive);
+  document.getElementById('stability-box').classList.toggle('checked', stabilityActive);
+  // Если включили "Crestere stabila" — сбрасываем "Scadere" (несовместимы)
+  if (stabilityActive && selectedGrowth === 'down') {
+    selectedGrowth = null;
+    document.querySelectorAll('.growth-btn').forEach(function(b) { b.classList.remove('active'); });
+  }
+  setTimeout(updateLiveCount, 50);
+}
+
+function matchesGrowth(c) {
+  if (!selectedGrowth) return true;
+  var growth = c.growth || 1.0;
+  if (selectedGrowth === 'any')  return growth > 1.0;
+  if (selectedGrowth === '20')   return growth >= 1.2;
+  if (selectedGrowth === '50')   return growth >= 1.5;
+  if (selectedGrowth === 'x2')   return growth >= 2.0;
+  if (selectedGrowth === 'x3')   return growth >= 3.0;
+  if (selectedGrowth === 'down') return growth < 1.0;
+  return true;
+}
+
+function matchesStability(c) {
+  if (!stabilityActive) return true;
+  return !!c.stable; // true if company grew 3 years in a row
+}
+
+
+function resetFilters(){
+  ['revenue','profit','angajati'].forEach(function(id){
+    var cfg=configs[id];
+    document.getElementById(cfg.minId).value=0;
+    document.getElementById(cfg.maxId).value=100;
+    updateRange(id);
+  });
+  document.querySelectorAll('.year-chip').forEach(function(c){c.classList.add('active');});
+  selectedGrowth=null;
+  document.querySelectorAll('.growth-btn').forEach(function(b){b.classList.remove('active');});
+  stabilityActive=false;
+  var stab=document.querySelector('.stability-row');
+  if(stab){stab.classList.remove('active');}
+  var sbox=document.getElementById('stability-box');
+  if(sbox){sbox.classList.remove('checked');}
+  document.querySelectorAll('.preset-chip').forEach(function(c){c.classList.remove('active');});
+  selectedCodes={};renderSelChips();syncQuick();
+  document.getElementById('caem-input').value='';
+  document.getElementById('caem-dd').classList.remove('open');
+  if(document.getElementById('quick-more').style.display!=='none')toggleMoreSectors();
+  selectedLocs={};renderLocChips();syncLocQuick();
+  document.getElementById('loc-input').value='';
+  document.getElementById('loc-dd').classList.remove('open');
+  if(document.getElementById('loc-more').style.display!=='none')toggleMoreLoc();
+  document.getElementById('year-from').value='';
+  document.getElementById('year-to').value='';
+  selectedGenders={};
+  document.querySelectorAll('.gender-chip').forEach(function(c){c.classList.remove('active');});
+  document.querySelectorAll('.contact-check').forEach(function(c){c.classList.remove('active');});
+  updateBadge();
+}
+
+// COUNT ACTIVE FILTERS
+function countActiveFilters(){
+  var n=0;
+  // sliders — count if not at default
+  ['revenue','profit','angajati'].forEach(function(id){
+    var cfg=configs[id];
+    var mn=parseInt(document.getElementById(cfg.minId).value);
+    var mx=parseInt(document.getElementById(cfg.maxId).value);
+    if(mn>0||mx<100)n++;
+  });
+  // year chips not all active
+  var yearChips=document.querySelectorAll('.year-chip');
+  var yearInactive=[].filter.call(yearChips,function(c){return!c.classList.contains('active');});
+  if(yearInactive.length>0)n++;
+  // caem
+  if(Object.keys(selectedCodes).length>0)n++;
+  // loc
+  if(Object.keys(selectedLocs).length>0)n++;
+  // year inputs
+  var yf=document.getElementById('year-from').value;
+  var yt=document.getElementById('year-to').value;
+  if(yf||yt)n++;
+  // gender
+  if(Object.keys(selectedGenders).length>0)n++;
+  // contacts
+  if(document.querySelectorAll('.contact-check.active').length>0)n++;
+  return n;
+}
+
+function updateBadge(){
+  var n=countActiveFilters();
+  var badge=document.getElementById('filtre-badge');
+  if(n>0){
+    badge.style.display='inline-block';
+    badge.textContent=n;
+  } else {
+    badge.style.display='none';
+  }
+}
+
+function applyFilters(){
+  closeModal();
+  updateBadge();
+}
+
+function validateYear(input,mn,mx){
+  var v=parseInt(input.value);
+  if(input.value.length>=4){
+    if(v<mn)input.value=mn;
+    if(v>mx)input.value=mx;
+  }
+  document.querySelectorAll('.year-presets .preset-chip').forEach(function(c){c.classList.remove('active');});
+}
+
+// INIT
+['revenue','profit','angajati'].forEach(function(id){buildHistogram(id,histData[id]);updateRange(id);});
+setTimeout(updateLiveCount, 100);
+bindTextInput('rev-min-txt','revenue',true);
+bindTextInput('rev-max-txt','revenue',false);
+bindTextInput('prf-min-txt','profit',true);
+bindTextInput('prf-max-txt','profit',false);
+bindTextInput('ang-min-txt','angajati',true);
+bindTextInput('ang-max-txt','angajati',false);
+
+
+
+
+var COMPANIES = [
+  {id:1,  idno:'1002600031915', name:'Moldtelecom SA',              caem:'61', caem_name:'Telecomunicatii',                    loc:'Chisinau',  revenue:1850000000, profit:142000000, angajati:3200, year:1993, gender:'M', web:1,phone:1,email:1,facebook:1,linkedin:1,growth:1.08},
+  {id:2,  idno:'1003600086498', name:'Orange Moldova SA',           caem:'61', caem_name:'Telecomunicatii',                    loc:'Chisinau',  revenue:2100000000, profit:310000000, angajati:1800, year:1999, gender:'M', web:1,phone:1,email:1,facebook:1,instagram:1,linkedin:1,growth:1.15},
+  {id:3,  idno:'1002600012345', name:'Efes Vitanta Moldova SA',     caem:'11', caem_name:'Fabricarea bauturilor',              loc:'Chisinau',  revenue:980000000,  profit:87000000,  angajati:620,  year:1994, gender:'M', web:1,phone:1,email:1,facebook:1,growth:0.95},
+  {id:4,  idno:'1006600023456', name:'Sudzucker Moldova SA',        caem:'10', caem_name:'Industria alimentara',               loc:'Drochia',   revenue:1200000000, profit:95000000,  angajati:1100, year:2001, gender:'M', web:1,phone:1,email:1,growth:1.22},
+  {id:5,  idno:'1010600034567', name:'Termoelectrica SA',           caem:'35', caem_name:'Productia de energie electrica',     loc:'Chisinau',  revenue:2400000000, profit:180000000, angajati:2100, year:1998, gender:'M', web:1,phone:1,email:1,growth:1.05},
+  {id:6,  idno:'1014600045678', name:'JLC SRL',                     caem:'46', caem_name:'Comertul cu ridicata',               loc:'Chisinau',  revenue:340000000,  profit:28000000,  angajati:145,  year:2005, gender:'M', web:1,phone:1,email:1,facebook:1,growth:1.45},
+  {id:7,  idno:'1015600056789', name:'Glia Grup SRL',               caem:'41', caem_name:'Constructii de cladiri',             loc:'Chisinau',  revenue:285000000,  profit:22000000,  angajati:312,  year:2008, gender:'M', web:1,phone:1,email:1,growth:2.1},
+  {id:8,  idno:'1016600067890', name:'Agroprim SRL',                caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Straseni',  revenue:95000000,   profit:8400000,   angajati:87,   year:2003, gender:'M', phone:1,email:1,growth:1.12},
+  {id:9,  idno:'1017600078901', name:'Ionel si Fii SRL',            caem:'47', caem_name:'Comertul cu amanuntul',              loc:'Balti',     revenue:62000000,   profit:4100000,   angajati:34,   year:2012, gender:'M', phone:1,growth:0.88},
+  {id:10, idno:'1018600089012', name:'Tehno-Sistem SRL',            caem:'62', caem_name:'Servicii IT',                        loc:'Chisinau',  revenue:45000000,   profit:9800000,   angajati:28,   year:2015, gender:'M', web:1,phone:1,email:1,linkedin:1,growth:1.8},
+  {id:11, idno:'1019600090123', name:'Maria Construct SRL',         caem:'43', caem_name:'Lucrari speciale de constructii',    loc:'Orhei',     revenue:31000000,   profit:2200000,   angajati:56,   year:2010, gender:'F', phone:1,email:1,growth:1.3},
+  {id:12, idno:'1020600001234', name:'FarmaCeia SRL',               caem:'21', caem_name:'Fabricarea produselor farmaceutice', loc:'Chisinau',  revenue:128000000,  profit:14500000,  angajati:92,   year:2007, gender:'F', web:1,phone:1,email:1,facebook:1,instagram:1,growth:1.55},
+  {id:13, idno:'1021600012340', name:'AgroVita SRL',                caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Cahul',     revenue:54000000,   profit:3800000,   angajati:120,  year:2004, gender:'M', phone:1,growth:0.92},
+  {id:14, idno:'1022600023450', name:'Digital Solutions SRL',       caem:'62', caem_name:'Servicii IT',                        loc:'Chisinau',  revenue:38000000,   profit:12000000,  angajati:21,   year:2018, gender:'M', web:1,phone:1,email:1,linkedin:1,facebook:1,growth:3.2,stable:true},
+  {id:15, idno:'1023600034560', name:'Vinaria Purcari SA',          caem:'11', caem_name:'Fabricarea bauturilor',              loc:'Causeni',   revenue:187000000,  profit:31000000,  angajati:210,  year:1827, gender:'M', web:1,phone:1,email:1,facebook:1,instagram:1,growth:1.28},
+  {id:16, idno:'1024600045670', name:'Trans-Auto SRL',              caem:'49', caem_name:'Transporturi terestre',              loc:'Chisinau',  revenue:72000000,   profit:5100000,   angajati:68,   year:2009, gender:'M', web:1,phone:1,email:1,growth:1.18},
+  {id:17, idno:'1025600056780', name:'Bella SRL',                   caem:'47', caem_name:'Comertul cu amanuntul',              loc:'Balti',     revenue:41000000,   profit:2800000,   angajati:29,   year:2014, gender:'F', phone:1,email:1,instagram:1,growth:1.4},
+  {id:18, idno:'1026600067800', name:'TehnoConstruct SRL',          caem:'41', caem_name:'Constructii de cladiri',             loc:'Ungheni',   revenue:88000000,   profit:6200000,   angajati:140,  year:2006, gender:'M', web:1,phone:1,email:1,growth:1.35},
+  {id:19, idno:'1027600078910', name:'Prim Consulting SRL',         caem:'70', caem_name:'Consultanta in management',          loc:'Chisinau',  revenue:12000000,   profit:4800000,   angajati:8,    year:2019, gender:'F', web:1,phone:1,email:1,linkedin:1,growth:2.8,stable:true},
+  {id:20, idno:'1028600089020', name:'Lactis SA',                   caem:'10', caem_name:'Industria alimentara',               loc:'Orhei',     revenue:310000000,  profit:19000000,  angajati:480,  year:1996, gender:'M', web:1,phone:1,email:1,facebook:1,growth:1.1},
+  {id:21, idno:'1029600090030', name:'Smart Logistic SRL',          caem:'52', caem_name:'Depozitare si transport auxiliar',   loc:'Chisinau',  revenue:67000000,   profit:7200000,   angajati:55,   year:2016, gender:'M', web:1,phone:1,email:1,growth:1.6},
+  {id:22, idno:'1030600001040', name:'GreenEnergy Moldova SRL',     caem:'35', caem_name:'Productia de energie electrica',     loc:'Chisinau',  revenue:24000000,   profit:6100000,   angajati:12,   year:2020, gender:'M', web:1,phone:1,email:1,linkedin:1,facebook:1,growth:4.5,stable:true},
+  {id:23, idno:'1031600012050', name:'Mobila Dacia SRL',            caem:'31', caem_name:'Fabricarea mobilei',                 loc:'Soroca',    revenue:43000000,   profit:3100000,   angajati:95,   year:2002, gender:'M', web:1,phone:1,email:1,growth:0.98},
+  {id:24, idno:'1032600023060', name:'Ana-Imobil SRL',              caem:'68', caem_name:'Tranzactii imobiliare',              loc:'Chisinau',  revenue:58000000,   profit:18000000,  angajati:14,   year:2013, gender:'F', web:1,phone:1,email:1,instagram:1,facebook:1,growth:1.9,stable:true},
+  {id:25, idno:'1033600034070', name:'Agro-Teren SA',               caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Edinet',    revenue:76000000,   profit:5400000,   angajati:180,  year:2000, gender:'M', phone:1,growth:1.05},
+  {id:26, idno:'1034600045080', name:'CodIT SRL',                   caem:'62', caem_name:'Servicii IT',                        loc:'Chisinau',  revenue:29000000,   profit:9500000,   angajati:17,   year:2021, gender:'M', web:1,phone:1,email:1,linkedin:1,instagram:1,growth:3.8,stable:true},
+  {id:27, idno:'1035600056090', name:'Magistra SRL',                caem:'85', caem_name:'Invatamant',                         loc:'Chisinau',  revenue:8500000,    profit:1200000,   angajati:42,   year:2011, gender:'F', web:1,phone:1,email:1,facebook:1,growth:1.25},
+  {id:28, idno:'1036600067100', name:'Rutiera Nord SRL',            caem:'42', caem_name:'Lucrari de geniu civil',             loc:'Balti',     revenue:195000000,  profit:12000000,  angajati:320,  year:1999, gender:'M', phone:1,email:1,growth:1.08},
+  {id:29, idno:'1037600078110', name:'Vin si Vin SRL',              caem:'11', caem_name:'Fabricarea bauturilor',              loc:'Hincesti',  revenue:34000000,   profit:4800000,   angajati:48,   year:2017, gender:'F', web:1,phone:1,email:1,instagram:1,facebook:1,growth:2.2,stable:true},
+  {id:30, idno:'1038600089120', name:'Medline SRL',                 caem:'86', caem_name:'Sanatatea umana',                    loc:'Chisinau',  revenue:52000000,   profit:7900000,   angajati:61,   year:2014, gender:'F', web:1,phone:1,email:1,facebook:1,growth:1.42},
+  {id:31, idno:'1039600090130', name:'AutoRent SRL',                caem:'77', caem_name:'Activitati de inchiriere',           loc:'Chisinau',  revenue:18000000,   profit:3200000,   angajati:11,   year:2019, gender:'M', web:1,phone:1,email:1,instagram:1,growth:1.7},
+  {id:32, idno:'1040600001140', name:'Textil-Prim SRL',             caem:'13', caem_name:'Fabricarea produselor textile',      loc:'Falesti',   revenue:27000000,   profit:1800000,   angajati:210,  year:2001, gender:'F', phone:1,email:1,growth:0.85},
+  {id:33, idno:'1041600012150', name:'SteelPro SRL',                caem:'25', caem_name:'Industria constructiilor metalice',  loc:'Chisinau',  revenue:84000000,   profit:6100000,   angajati:130,  year:2007, gender:'M', web:1,phone:1,email:1,growth:1.38},
+  {id:34, idno:'1042600023160', name:'FoodExpress SRL',             caem:'56', caem_name:'Restaurante si alimentatie',         loc:'Chisinau',  revenue:22000000,   profit:1900000,   angajati:45,   year:2018, gender:'M', web:1,phone:1,email:1,instagram:1,facebook:1,growth:1.95},
+  {id:35, idno:'1043600034170', name:'Asito SA',                    caem:'65', caem_name:'Activitati de asigurare',            loc:'Chisinau',  revenue:420000000,  profit:38000000,  angajati:380,  year:1991, gender:'M', web:1,phone:1,email:1,facebook:1,linkedin:1,growth:1.12},
+  {id:36, idno:'1044600045180', name:'ProAgro SRL',                 caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Calarasi',  revenue:61000000,   profit:4200000,   angajati:95,   year:2006, gender:'M', phone:1,email:1,growth:1.15},
+  {id:37, idno:'1045600056190', name:'Lumos Studio SRL',            caem:'73', caem_name:'Publicitate si marketing',           loc:'Chisinau',  revenue:7200000,    profit:2800000,   angajati:6,    year:2022, gender:'F', web:1,phone:1,email:1,instagram:1,linkedin:1,tiktok:1,growth:5.2,stable:true},
+  {id:38, idno:'1046600067200', name:'Arca-Turism SRL',             caem:'79', caem_name:'Agentii de turism',                  loc:'Chisinau',  revenue:15000000,   profit:1100000,   angajati:9,    year:2013, gender:'F', web:1,phone:1,email:1,facebook:1,growth:0.78},
+  {id:39, idno:'1047600078210', name:'Construct-Vest SRL',          caem:'41', caem_name:'Constructii de cladiri',             loc:'Ungheni',   revenue:112000000,  profit:8900000,   angajati:195,  year:2005, gender:'M', web:1,phone:1,email:1,growth:1.32},
+  {id:40, idno:'1048600089220', name:'DataSoft SRL',                caem:'62', caem_name:'Servicii IT',                        loc:'Chisinau',  revenue:55000000,   profit:18000000,  angajati:32,   year:2016, gender:'M', web:1,phone:1,email:1,linkedin:1,facebook:1,growth:2.4,stable:true},
+  {id:41, idno:'1049600090230', name:'XY Incubator SRL',            caem:'70', caem_name:'Consultanta in management',          loc:'Chisinau',  revenue:4200000,    profit:1800000,   angajati:5,    year:2023, gender:'M', web:1,phone:1,email:1,linkedin:1,instagram:1,tiktok:1,growth:8.5,stable:true},
+  {id:42, idno:'1050600001240', name:'Floreni Agro SA',             caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Floresti',  revenue:82000000,   profit:5900000,   angajati:210,  year:2002, gender:'M', phone:1,email:1,growth:1.18},
+  {id:43, idno:'1051600012250', name:'Balti-Construct SRL',         caem:'41', caem_name:'Constructii de cladiri',             loc:'Balti',     revenue:74000000,   profit:5100000,   angajati:160,  year:2004, gender:'M', web:1,phone:1,email:1,growth:1.28},
+  {id:44, idno:'1052600023260', name:'TeleRadio Moldova',           caem:'60', caem_name:'Activitati de radio si televiziune', loc:'Chisinau',  revenue:145000000,  profit:8200000,   angajati:850,  year:1994, gender:'M', web:1,phone:1,email:1,facebook:1,youtube:1,growth:1.05},
+  {id:45, idno:'1053600034270', name:'Finpar-Invest SA',            caem:'64', caem_name:'Intermedieri financiare',            loc:'Chisinau',  revenue:235000000,  profit:42000000,  angajati:95,   year:2003, gender:'M', web:1,phone:1,email:1,linkedin:1,growth:1.35},
+  {id:46, idno:'1054600045280', name:'IuteCredit Europe SA',        caem:'64', caem_name:'Intermedieri financiare',            loc:'Chisinau',  revenue:318000000,  profit:67000000,  angajati:180,  year:2008, gender:'M', web:1,phone:1,email:1,facebook:1,linkedin:1,growth:1.48},
+  {id:47, idno:'1055600056290', name:'Elat SRL',                    caem:'47', caem_name:'Comertul cu amanuntul',              loc:'Chisinau',  revenue:390000000,  profit:24000000,  angajati:520,  year:1997, gender:'M', web:1,phone:1,email:1,facebook:1,growth:1.22},
+  {id:48, idno:'1056600067300', name:'Nord Gaz SRL',                caem:'35', caem_name:'Productia de energie',               loc:'Balti',     revenue:180000000,  profit:14000000,  angajati:290,  year:2000, gender:'M', web:1,phone:1,email:1,growth:1.08},
+  {id:49, idno:'1057600078310', name:'Sirius Software SRL',         caem:'62', caem_name:'Servicii IT',                        loc:'Chisinau',  revenue:12000000,   profit:5200000,   angajati:18,   year:2018, gender:'M', web:1,phone:1,email:1,linkedin:1,instagram:1,facebook:1,growth:3.1,stable:true},
+  {id:50, idno:'1058600089320', name:'AgroInvest Holding SA',       caem:'01', caem_name:'Cultura vegetala si animala',        loc:'Ialoveni',  revenue:430000000,  profit:38000000,  angajati:680,  year:1999, gender:'M', web:1,phone:1,email:1,growth:1.42}
+];
+
+
+var currentPage = 1;
+var PAGE_SIZE = 10;
+var currentQuery = '';
+
+function fmtMDL(v){
+  if(v>=1000000000)return(v/1000000000).toFixed(1).replace('.0','')+'Mrd MDL';
+  if(v>=1000000)return(v/1000000).toFixed(1).replace('.0','')+'M MDL';
+  if(v>=1000)return Math.round(v/1000)+'K MDL';
+  return v+' MDL';
+}
+
+function hlSearch(text, q){
+  if(!q)return text;
+  var idx=text.toLowerCase().indexOf(q.toLowerCase());
+  if(idx<0)return text;
+  return text.slice(0,idx)+'<mark class="search-highlight">'+text.slice(idx,idx+q.length)+'</mark>'+text.slice(idx+q.length);
+}
+
+function matchesSearch(c, q){
+  if(!q)return true;
+  var ql=q.toLowerCase();
+  return c.name.toLowerCase().indexOf(ql)>-1
+    || c.idno.indexOf(ql)>-1
+    || c.caem_name.toLowerCase().indexOf(ql)>-1
+    || c.caem.indexOf(ql)>-1
+    || c.loc.toLowerCase().indexOf(ql)>-1;
+}
+
+function matchesFilters(c){
+  var revMin = sliderToReal(parseInt(document.getElementById('rev-min').value), 'revenue');
+  var revMax = sliderToReal(parseInt(document.getElementById('rev-max').value), 'revenue');
+  if(c.revenue < revMin || c.revenue > revMax) return false;
+
+  var prfMin = sliderToReal(parseInt(document.getElementById('prf-min').value), 'profit');
+  var prfMax = sliderToReal(parseInt(document.getElementById('prf-max').value), 'profit');
+  if(c.profit < prfMin || c.profit > prfMax) return false;
+
+  var angMin = sliderToReal(parseInt(document.getElementById('ang-min').value), 'angajati');
+  var angMax = sliderToReal(parseInt(document.getElementById('ang-max').value), 'angajati');
+  if(c.angajati < angMin || c.angajati > angMax) return false;
+
+  var caemKeys=Object.keys(selectedCodes);
+  if(caemKeys.length>0){
+    var hit=caemKeys.some(function(k){
+      return c.caem===k||c.caem_name.toLowerCase().indexOf(k.toLowerCase())>-1;
+    });
+    if(!hit)return false;
+  }
+
+  var locKeys=Object.keys(selectedLocs);
+  if(locKeys.length>0&&locKeys.indexOf(c.loc)===-1)return false;
+
+  var yf=parseInt(document.getElementById('year-from').value)||0;
+  var yt=parseInt(document.getElementById('year-to').value)||9999;
+  if(c.year<yf||c.year>yt)return false;
+
+  var gKeys=Object.keys(selectedGenders);
+  if(gKeys.length>0&&gKeys.indexOf(c.gender)===-1)return false;
+
+  var contactMap={
+    'website':'web','telefon':'phone','email':'email',
+    'instagram':'instagram','facebook':'facebook','telegram':'telegram',
+    'tiktok':'tiktok','linkedin':'linkedin'
+  };
+  var anyContact=false;
+  document.querySelectorAll('.contact-check.active .contact-label').forEach(function(el){
+    anyContact=true;
+    var key=contactMap[el.textContent.trim().toLowerCase()];
+    if(key&&!c[key])c._reject=true;
+  });
+  if(c._reject){delete c._reject;return false;}
+
+  if (!matchesGrowth(c)) return false;
+  if (!matchesStability(c)) return false;
+  return true;
+}
+
+function sortList(list){
+  var s=document.getElementById('sort-select').value;
+  return list.slice().sort(function(a,b){
+    if(s==='revenue-desc')return b.revenue-a.revenue;
+    if(s==='revenue-asc')return a.revenue-b.revenue;
+    if(s==='profit-desc')return b.profit-a.profit;
+    if(s==='angajati-desc')return b.angajati-a.angajati;
+    if(s==='year-asc')return a.year-b.year;
+    if(s==='year-desc')return b.year-a.year;
+    if(s==='name-asc')return a.name.localeCompare(b.name);
+    return 0;
+  });
+}
+
+var AVATAR_COLORS = ['#3b82f6','#8b5cf6','#ec4899','#f59e0b','#10b981','#ef4444','#06b6d4','#6366f1','#84cc16','#f97316'];
+
+function getInitials(name) {
+  var clean = name.replace(/SRL|SA|S\.R\.L\.|II|IS/gi,'').trim();
+  var words = clean.split(/\s+/).filter(Boolean);
+  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+  return clean.slice(0,2).toUpperCase();
+}
+function getAvatarColor(name) {
+  var sum = 0;
+  for (var i = 0; i < name.length; i++) sum += name.charCodeAt(i);
+  return AVATAR_COLORS[sum % AVATAR_COLORS.length];
+}
+
+function renderCard(c, q) {
+  var initials = getInitials(c.name);
+  var color = getAvatarColor(c.name);
+  var displayName = q ? hlSearch(c.name, q) : c.name;
+  var isIT = (c.caem === '62' || c.caem === '63');
+  var itpark = isIT ? '<div class="cc-itpark"><span>&#128187;</span> IT Park</div>' : '';
+  var icons = '';
+  if (c.phone) icons += '<span title="Telefon">&#128222;</span>';
+  if (c.web)   icons += '<span title="Website">&#127760;</span>';
+  if (c.email) icons += '<span title="Email">&#9993;</span>';
+
+  var html = '<a class="company-card" href="https://siriusb2b.md/ro/company/' + c.idno + '" target="_blank">';
+  html += '<div class="cc-row1">';
+  html += '<div class="cc-avatar" style="background:' + color + '">' + initials + '</div>';
+  html += '<div class="cc-title"><div class="cc-name">' + displayName + '</div></div>';
+  html += itpark;
+  html += '</div>';
+  html += '<div class="cc-row2">';
+  html += '<span class="cc-meta">IDNO: <strong>' + c.idno + '</strong></span>';
+  html += '<span class="cc-meta">Venit: <strong>' + fmtMDL(c.revenue) + '</strong></span>';
+  html += '<span class="cc-meta">Angajati: <strong>' + c.angajati + '</strong></span>';
+  html += '<span class="cc-meta">Fondare: <strong>' + c.year + '</strong></span>';
+  html += '</div>';
+  html += '<div class="cc-activity">' + c.caem_name + '</div>';
+  html += '<div class="cc-row3">';
+  html += '<div class="cc-icons">' + icons + '</div>';
+  html += '<span class="cc-link">Vezi fisa &rarr;</span>';
+  html += '</div>';
+  html += '</a>';
+  return html;
+}
+
+
+function renderPagination(total, page){
+  var pages=Math.ceil(total/PAGE_SIZE);
+  var el=document.getElementById('pagination');
+  if(pages<=1){el.innerHTML='';return;}
+  var h='';
+  h+='<button class="page-btn" onclick="goPage('+(page-1)+')" '+(page<=1?'disabled':'')+'>&#8249;</button>';
+  for(var i=1;i<=pages;i++){
+    if(pages>7&&i>2&&i<pages-1&&Math.abs(i-page)>1){
+      if(i===3||i===pages-2)h+='<span style="padding:0 6px;color:#ccc;line-height:36px">&#8230;</span>';
+      continue;
+    }
+    h+='<button class="page-btn'+(i===page?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  }
+  h+='<button class="page-btn" onclick="goPage('+(page+1)+')" '+(page>=pages?'disabled':'')+'>&#8250;</button>';
+  el.innerHTML=h;
+}
+
+function goPage(p){
+  currentPage=p;
+  renderResults();
+  var sec=document.getElementById('results-section');
+  if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderResults(){
+  var q=currentQuery;
+  var filtered=COMPANIES.filter(function(c){
+    return matchesSearch(c,q)&&matchesFilters(c);
+  });
+  var sorted=sortList(filtered);
+  var total=sorted.length;
+  var start=(currentPage-1)*PAGE_SIZE;
+  var page=sorted.slice(start,start+PAGE_SIZE);
+
+  var sec=document.getElementById('results-section');
+  var grid=document.getElementById('results-grid');
+  var empty=document.getElementById('results-empty');
+  document.getElementById('results-count').textContent=total;
+
+  if(total===0){
+    grid.innerHTML='';
+    empty.style.display='block';
+  } else {
+    empty.style.display='none';
+    grid.innerHTML=page.map(function(c){return renderCard(c,q);}).join('');
+  }
+  renderPagination(total,currentPage);
+  sec.classList.add('visible');
+}
+
+function triggerSearch(){
+  currentQuery=document.getElementById('searchInput').value.trim();
+  currentPage=1;
+  renderResults();
+}
+
+// Hook search button and Enter key
+document.querySelector('.btn-cauta').addEventListener('click',triggerSearch);
+document.getElementById('searchInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter')triggerSearch();
+});
+document.getElementById('searchInput').addEventListener('input',function(){
+  if(this.value.trim().length>=2){
+    currentQuery=this.value.trim();
+    currentPage=1;
+    renderResults();
+  } else if(this.value.trim().length===0){
+    currentQuery='';
+    // keep visible if filters active
+    if(countActiveFilters()===0){
+      document.getElementById('results-section').classList.remove('visible');
+    } else {
+      currentPage=1;
+      renderResults();
+    }
+  }
+});
+
+// Override applyFilters
+applyFilters = function(){
+  currentPage=1;
+  closeModal();
+  updateBadge();
+  renderResults();
+};
+
+
+
+// ── LIVE COUNT ──
+function countMatchingCompanies() {
+  return COMPANIES.filter(function(c) { return matchesFilters(c); }).length;
+}
+
+function updateLiveCount() {
+  var n = countMatchingCompanies();
+  var total = COMPANIES.length;
+  var bar = document.getElementById('filter-live-count');
+  var txt = document.getElementById('live-count-text');
+  var applyBtn = document.getElementById('btn-apply');
+  if (!bar || !txt) return;
+
+  bar.style.display = 'block';
+  if (n === 0) {
+    txt.innerHTML = '<span class="count-num count-zero">0</span> companii corespund &mdash; <span class="count-hint">incearca sa modifici filtrele</span>';
+    bar.style.background = '#fff5f5';
+    bar.style.borderTopColor = '#fecaca';
+    if (applyBtn) applyBtn.textContent = 'Nicio companie gasita';
+  } else if (n === total) {
+    txt.innerHTML = 'Toate cele <span class="count-num">' + total + '</span> companii corespund';
+    bar.style.background = '#f0f9ff';
+    bar.style.borderTopColor = '#bae6fd';
+    if (applyBtn) applyBtn.textContent = 'Arata toate ' + total + ' companiile';
+  } else {
+    txt.innerHTML = '<span class="count-num">' + n + '</span> <span class="count-total">din ' + total + ' companii corespund</span>';
+    bar.style.background = '#eff6ff';
+    bar.style.borderTopColor = '#dbeafe';
+    if (applyBtn) applyBtn.textContent = 'Arata ' + n + ' companii';
+  }
+}
+
+// Хук на updateRange — вызывать live count после каждого изменения слайдера
+var _origUpdateRange = updateRange;
+updateRange = function(id, skipLinked) {
+  _origUpdateRange(id, skipLinked);
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 50);
+};
+
+// Хук на все остальные функции-переключатели
+function _lcHook(orig) {
+  return function() {
+    orig.apply(this, arguments);
+    setTimeout(function(){ updateLiveCount(); liveRender(); }, 50);
+  };
+}
+
+toggleStability = _lcHook(toggleStability);
+toggleQuick     = _lcHook(toggleQuick);
+toggleLoc       = _lcHook(toggleLoc);
+toggleGender    = _lcHook(toggleGender);
+toggleContact   = _lcHook(toggleContact);
+toggleYearChip  = _lcHook(toggleYearChip);
+setYearPreset   = _lcHook(setYearPreset);
+
+// CAEM dropdown click
+document.getElementById('caem-dd').addEventListener('click', function() {
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 80);
+});
+// Loc dropdown click
+document.getElementById('loc-dd').addEventListener('click', function() {
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 80);
+});
+// Год основания
+document.getElementById('year-from').addEventListener('input', function() {
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 200);
+});
+document.getElementById('year-to').addEventListener('input', function() {
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 200);
+});
+
+var _lcOrigOpenModal = openModal;
+openModal = function() {
+  _lcOrigOpenModal();
+  setTimeout(updateLiveCount, 50);
+};
+
+var _lcOrigResetFilters = resetFilters;
+resetFilters = function() {
+  _lcOrigResetFilters();
+  setTimeout(function(){ updateLiveCount(); liveRender(); }, 50);
+};
+
+// Обновляет карточки в реальном времени не закрывая модал
+function liveRender() {
+  var sec = document.getElementById('results-section');
+  if (!sec) return;
+  // Показываем результаты только если есть активные фильтры или поисковый запрос
+  if (countActiveFilters() === 0 && !currentQuery) {
+    sec.classList.remove('visible');
+    return;
+  }
+  currentPage = 1;
+  renderResults();
+}
+
+
+
+
+
+</script>
+</body>
+</html>
